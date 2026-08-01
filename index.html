@@ -3,607 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA — Strategic Sales Consulting</title>
+    <title>AURA - Экспертиза</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
-
         :root {
-            --bg: #050507;
-            --card-bg: #0d0e12;
-            --modal-bg: #0f1015;
-            --gold: #d4af37;
-            --gold-light: #f3e5ab;
-            --text-main: #f4f4f6;
-            --text-sub: #8e949e;
-            --border: rgba(212, 175, 55, 0.18);
-            --border-hover: rgba(212, 175, 55, 0.6);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+            --bg-color: #0f1115;
+            --card-bg: #161920;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: rgba(255, 255, 255, 0.08);
         }
 
         body {
-            background-color: var(--bg);
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
-            letter-spacing: -0.2px;
         }
 
-        nav {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
+        /* Навигация для примера */
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 28px 60px;
-            background: rgba(5, 5, 7, 0.85);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
+            padding: 20px 50px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .logo {
-            font-family: 'Cinzel', serif;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 700;
-            letter-spacing: 5px;
-            color: var(--text-main);
+            color: #fff;
             text-decoration: none;
         }
-        .logo span { color: var(--gold); }
 
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
+        .logo span {
+            color: var(--accent-color);
         }
 
-        .nav-links a {
-            color: var(--text-sub);
-            text-decoration: none;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover { color: var(--gold); }
-
-        .btn-private {
+        /* Кнопка "Экспертиза" */
+        .btn-expertise {
             background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
+            border: 1px solid var(--accent-color);
+            color: var(--text-main);
             padding: 12px 28px;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-radius: 2px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .btn-private:hover {
-            background: var(--gold);
-            color: var(--bg);
-            box-shadow: 0 0 35px rgba(212, 175, 55, 0.35);
-        }
-
-        header.hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 160px 20px 100px 20px;
-            position: relative;
-            background: radial-gradient(circle at center, #14131c 0%, var(--bg) 70%);
-        }
-
-        .hero-subtitle {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 7px;
-            color: var(--gold);
-            margin-bottom: 20px;
-            opacity: 0.9;
-        }
-
-        .hero h1 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(38px, 5.2vw, 72px);
-            font-weight: 600;
-            line-height: 1.15;
-            margin-bottom: 24px;
-            max-width: 1050px;
-            letter-spacing: 1px;
-            color: #ffffff;
-        }
-
-        .hero h1 span { color: var(--gold); }
-
-        .hero p {
             font-size: 15px;
-            color: var(--text-sub);
-            max-width: 680px;
-            margin-bottom: 40px;
-            line-height: 1.7;
-            font-weight: 300;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .section {
-            padding: 130px 60px;
-            max-width: 1440px;
+        .btn-expertise:hover {
+            background: var(--accent-color);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Полноэкранное модальное окно */
+        .expertise-fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg-color);
+            z-index: 9999;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease-in-out;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .expertise-fullscreen.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .expertise-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Кнопка закрытия */
+        .close-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Контент внутри полноэкранного экрана */
+        .expertise-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .expertise-header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .expertise-header p {
+            color: var(--text-muted);
+            font-size: 18px;
+            max-width: 600px;
             margin: 0 auto;
         }
 
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 60px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 20px;
-        }
-
-        .section-title {
-            font-family: 'Cinzel', serif;
-            font-size: 34px;
-            font-weight: 400;
-            letter-spacing: 2px;
-        }
-
-        .section-title span { color: var(--gold); }
-
-        .grid-masterpieces {
+        .expertise-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
         }
 
-        .card-masterpiece {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 50px 40px;
-            position: relative;
-            transition: border-color 0.4s, box-shadow 0.4s;
+        .expertise-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 14px;
+            transition: transform 0.3s;
         }
 
-        .card-masterpiece:hover {
-            border-color: var(--border-hover);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 25px rgba(212, 175, 55, 0.1);
+        .expertise-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, 0.4);
         }
 
-        .card-index {
-            font-family: 'Cinzel', serif;
-            font-size: 13px;
-            color: var(--gold);
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
-        .card-masterpiece h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 22px;
-            margin-bottom: 16px;
-            font-weight: 500;
-        }
-
-        .card-masterpiece p {
-            color: var(--text-sub);
-            font-size: 14px;
-            line-height: 1.7;
-            margin-bottom: 35px;
-            font-weight: 300;
-        }
-
-        .card-link {
-            color: var(--text-main);
-            background: none;
-            border: none;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            padding: 0;
-        }
-
-        .card-link span { color: var(--gold); transition: transform 0.3s; }
-        .card-masterpiece:hover .card-link span { transform: translateX(8px); }
-
-        .manuf-section {
-            background: #090a0d;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 140px 60px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .manuf-content h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 38px;
-            line-height: 1.25;
-            margin-bottom: 30px;
-            font-weight: 400;
-        }
-
-        .manuf-content p {
-            color: var(--text-sub);
-            font-size: 15px;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .manuf-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .stat-item h4 {
-            font-family: 'Cinzel', serif;
-            font-size: 44px;
-            color: var(--gold);
-            margin-bottom: 8px;
-            font-weight: 400;
-        }
-
-        .stat-item p {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--text-sub);
-        }
-
-        .manuf-visual {
-            height: 520px;
-            border: 1px solid var(--border);
-            position: relative;
-            background: radial-gradient(circle at center, #181922 0%, #050507 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 50px;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 5, 7, 0.85);
-            backdrop-filter: blur(8px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 99999;
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
-
-        .modal {
-            background: var(--modal-bg);
-            border: 1px solid var(--border);
-            width: 100%;
-            max-width: 520px;
-            padding: 50px 40px;
-            position: relative;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 30px rgba(212, 175, 55, 0.15);
-            transform: translateY(20px);
-            transition: transform 0.4s ease;
-        }
-
-        .modal-overlay.active .modal {
-            transform: translateY(0);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 25px; right: 25px;
-            background: transparent;
-            border: none;
-            color: var(--text-sub);
+        .expertise-card h3 {
             font-size: 20px;
-            cursor: pointer;
-            transition: color 0.3s;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #fff;
         }
 
-        .modal-close:hover { color: var(--gold); }
-
-        .modal h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 24px;
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-
-        .modal p {
-            color: var(--text-sub);
-            font-size: 13px;
-            margin-bottom: 30px;
+        .expertise-card p {
+            color: var(--text-muted);
             line-height: 1.6;
+            margin: 0;
+            font-size: 15px;
         }
 
-        .form-group {
-            margin-bottom: 20px;
+        /* Секция болей и проблем */
+        .pain-section {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), transparent);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+            margin-top: 40px;
         }
 
-        .form-group label {
-            display: block;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--gold);
-            margin-bottom: 8px;
+        .pain-section h2 {
+            font-size: 28px;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
         }
 
-        .form-control {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border);
-            padding: 14px 18px;
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
+        .pain-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .pain-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .pain-icon {
+            color: #ef4444;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .pain-text {
+            color: var(--text-muted);
             font-size: 14px;
-            border-radius: 2px;
+            line-height: 1.5;
         }
 
-        .form-control:focus {
-            outline: none;
-            border-color: var(--gold);
-        }
-
-        .modal .btn-private {
-            width: 100%;
-            margin-top: 10px;
-            padding: 16px;
-            text-align: center;
-        }
-
-        footer {
-            padding: 80px 60px;
-            text-align: center;
-            border-top: 1px solid var(--border);
-            color: var(--text-sub);
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        @media (max-width: 1024px) {
-            .grid-masterpieces { grid-template-columns: 1fr; }
-            .manuf-section { grid-template-columns: 1fr; }
-            nav { padding: 20px; }
-            .nav-links { display: none; }
+        .pain-text strong {
+            color: var(--text-main);
         }
     </style>
 </head>
 <body>
 
-    <nav>
+    <!-- Шапка сайта -->
+    <header>
         <a href="#" class="logo">AURA<span>.</span></a>
-        <ul class="nav-links">
-            <li><a href="#">Экспертиза</a></li>
-            <li><a href="#">Направления</a></li>
-            <li><a href="#">Результаты</a></li>
-        </ul>
-        <button type="button" class="btn-private" onclick="openModal()">Запросить консультацию</button>
-    </nav>
-
-    <header class="hero" id="hero">
-        <div class="hero-subtitle">Strategic Sales Engineering</div>
-        <h1>Управление ростом и масштабированием <span>вашего бизнеса</span></h1>
-        <p>Профессиональный консалтинг в сфере продаж: выстраиваем сквозную аналитику, устраняем кассовые разрывы, проектируем высокоэффективные отделы продаж и трансформируем хаос в прогнозируемую прибыль.</p>
-        <button type="button" class="btn-private" style="padding: 16px 36px; font-size: 12px;" onclick="openModal()">Запросить консультацию</button>
+        <!-- Кнопка "Экспертиза", открывающая полноэкранный режим -->
+        <button class="btn-expertise" onclick="openExpertise()">Экспертиза</button>
     </header>
 
-    <section class="section">
-        <div class="section-header">
-            <h2 class="section-title">Ключевые <span>направления</span></h2>
-            <span style="color: var(--text-sub); font-size: 12px; text-transform: uppercase; letter-spacing: 2px;">Комплексный консалтинг</span>
-        </div>
-
-        <div class="grid-masterpieces">
-            <div class="card-masterpiece">
-                <div class="card-index">01 / СТРУКТУРА</div>
-                <h3>Архитектура отдела продаж</h3>
-                <p>Проектируем коммерческие департаменты с нуля под ключ. Внедряем регламенты, четкие должностные инструкции, системы грейдов и мотивации, которые заставляют команду работать на выполнение плана.</p>
-                <button type="button" class="card-link" onclick="openModal()">Узнать детали <span>→</span></button>
-            </div>
-
-            <div class="card-masterpiece">
-                <div class="card-index">02 / АНАЛИТИКА</div>
-                <h3>Сквозная аналитика & LTV</h3>
-                <p>Оцифровываем каждый этап сделки. Устраняем кассовые разрывы за счет управления циклом жизни клиента, юнит-экономики и предиктивного прогнозирования выручки.</p>
-                <button type="button" class="card-link" onclick="openModal()">Исследовать <span>→</span></button>
-            </div>
-
-            <div class="card-masterpiece">
-                <div class="card-index">03 / МАСШТАБ</div>
-                <h3>Турбо-масштабирование B2B</h3>
-                <p>Проведение сложных переговоров высокого сегмента, штурм новых рынков сбыта и внедрение переговорных стратегий закрытия контрактов миллионного масштаба.</p>
-                <button type="button" class="card-link" onclick="openModal()">Исследовать <span>→</span></button>
-            </div>
-        </div>
-    </section>
-
-    <section class="manuf-section">
-        <div class="manuf-content">
-            <div class="hero-subtitle" style="margin-bottom: 10px;">Ценность для бизнеса</div>
-            <h2>Почему профессиональный консалтинг критически важен?</h2>
-            <p>Большинство компаний теряют до 50% потенциальной выручки из-за банального отсутствия системного контроля в продажах: менеджеры забывают перезванивать вовремя, лиды сливаются на этапе квалификации, а руководство принимает решения вслепую.</p>
-            <p>Консалтинговая компания AURA выступает внешним архитектором вашей прибыли. Мы не просто даем советы — мы внедряем жесткие регламенты, автоматизируем воронку и превращаем отдел продаж в автономный конвейер генерации денег.</p>
+    <!-- Полноэкранный блок экспертизы -->
+    <div id="expertiseModal" class="expertise-fullscreen">
+        <div class="expertise-container">
+            <button class="close-btn" onclick="closeExpertise()">✕</button>
             
-            <div class="manuf-stats">
-                <div class="stat-item">
-                    <h4>+240%</h4>
-                    <p>Рост маржинальности</p>
+            <div class="expertise-header">
+                <h1>Наша экспертиза и подход</h1>
+                <p>Мы не занимаемся теоретической «водой». Наша цель — построение жесткой, прозрачной и масштабируемой архитектуры продаж под ключ.</p>
+            </div>
+
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <h3>📐 Архитектура продаж</h3>
+                    <p>Проектируем сквозную бизнес-логику отдела с нуля: от первого касания клиента до закрытия сделки и повторных продаж, исключая слепые зоны в воронке.</p>
                 </div>
-                <div class="stat-item">
-                    <h4>14 дней</h4>
-                    <p>До первых улучшений</p>
+                <div class="expertise-card">
+                    <h3>⚡ Устранение слива лидов</h3>
+                    <p>Настраиваем регламенты, контроль и автоматизацию так, чтобы ни одна заявка не терялась менеджерами, а скорость обработки сокращалась до минут.</p>
+                </div>
+                <div class="expertise-card">
+                    <h3>📊 Юнит-экономика и метрики</h3>
+                    <p>Внедряем реальные рычаги управления рентабельностью. Вы будете точно знать стоимость привлечения клиента и маржинальность каждого направления.</p>
                 </div>
             </div>
-        </div>
-        <div class="manuf-visual">
-            <p style="color: var(--text-sub); font-size: 14px; line-height: 1.7; font-weight: 300; position: relative; z-index: 2;">
-                «Системные продажи — это точная математика, где каждый лид превращается в актив компании благодаря правильным алгоритмам».
-            </p>
-        </div>
-    </section>
 
-    <footer>
-        <p>&copy; 2026 AURA Consulting Group. Все права защищены стандартами управленческой точности.</p>
-    </footer>
-
-    <!-- Модальное окно -->
-    <div class="modal-overlay" id="consultModal" onclick="handleOutsideClick(event)">
-        <div class="modal">
-            <button type="button" class="modal-close" onclick="closeModal()">✕</button>
-            <div id="modalHeaderContent">
-                <h3>Запрос консультации</h3>
-                <p>Заполните данные, и наш эксперт свяжется с вами для обсуждения точек роста продаж.</p>
-            </div>
-            
-            <!-- Форма -->
-            <form id="leadForm" onsubmit="handleSubmit(event)">
-                <div class="form-group">
-                    <label>ФИО</label>
-                    <input type="text" id="fullName" class="form-control" required placeholder="Иван Иванов">
+            <div class="pain-section">
+                <h2>Какие проблемы и боли клиентов мы решаем?</h2>
+                <div class="pain-list">
+                    <div class="pain-item">
+                        <span class="pain-icon">✕</span>
+                        <div class="pain-text"><strong>Хаос в заявках:</strong> Лиды теряются, менеджеры забывают перезванивать, а руководители узнают о проблемах постфактум.</div>
+                    </div>
+                    <div class="pain-item">
+                        <span class="pain-icon">✕</span>
+                        <div class="pain-text"><strong>Зависимость от людей:</strong> Увольняется звездный менеджер — и продажи вместе с ним резко падают. Мы создаем систему, которая работает независимо от кадров.</div>
+                    </div>
+                    <div class="pain-item">
+                        <span class="pain-icon">✕</span>
+                        <div class="pain-text"><strong>Отсутствие прозрачной аналитики:</strong> Деньги в рекламу вливаются, но посчитать реальную окупаемость и ROI по каждому каналу невозможно.</div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Телефон или Telegram</label>
-                    <input type="text" id="contact" class="form-control" required placeholder="+380... / @username">
-                </div>
-                <div class="form-group">
-                    <label>Количество менеджеров по продажам</label>
-                    <input type="number" id="managersCount" class="form-control" min="1" required placeholder="Например: 5">
-                </div>
-                <div class="form-group">
-                    <label>Какой продукт вы продаете?</label>
-                    <input type="text" id="product" class="form-control" required placeholder="Например: B2B SaaS / Недвижимость / Услуги">
-                </div>
-                <button type="submit" id="submitBtn" class="btn-private">Отправить заявку</button>
-            </form>
-
-            <!-- Сообщение об успехе -->
-            <div id="successMessage" style="display: none; text-align: center; padding: 20px 0;">
-                <div style="font-size: 48px; color: var(--gold); margin-bottom: 20px;">✓</div>
-                <h3 style="margin-bottom: 15px; font-family: 'Cinzel', serif;">Заявка принята</h3>
-                <p style="margin-bottom: 30px; color: var(--text-sub);">Спасибо! Ваша заявка успешно отправлена. Наш эксперт свяжется с вами в ближайшее время.</p>
-                <button type="button" class="btn-private" onclick="closeModal()">Закрыть</button>
             </div>
         </div>
     </div>
 
-    <!-- Подключаем клиент Supabase SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // Инициализация Supabase (замени на реальные данные при деплое)
-        const SUPABASE_URL = 'https://your-project.supabase.co';
-        const SUPABASE_ANON_KEY = 'your-anon-key';
-        
-        let supabaseClient = null;
-        try {
-            if (window.supabase && SUPABASE_URL !== 'https://your-project.supabase.co') {
-                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            }
-        } catch (e) {
-            console.warn('Supabase initialization skipped or failed:', e);
+        function openExpertise() {
+            const modal = document.getElementById('expertiseModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Блокируем скролл страницы под модалкой
         }
 
-        const modal = document.getElementById('consultModal');
-
-        function openModal() {
-            if (modal) {
-                modal.classList.add('active');
-            }
-        }
-
-        function closeModal() {
-            if (modal) {
-                modal.classList.remove('active');
-                setTimeout(() => {
-                    const form = document.getElementById('leadForm');
-                    const header = document.getElementById('modalHeaderContent');
-                    const success = document.getElementById('successMessage');
-                    if (form) form.style.display = 'block';
-                    if (header) header.style.display = 'block';
-                    if (success) success.style.display = 'none';
-                }, 400);
-            }
-        }
-
-        function handleOutsideClick(event) {
-            if (event.target === modal) {
-                closeModal();
-            }
-        }
-
-        async function handleSubmit(event) {
-            event.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.textContent = 'Отправка...';
-            submitBtn.disabled = true;
-
-            const leadData = {
-                full_name: document.getElementById('fullName').value,
-                contact: document.getElementById('contact').value,
-                managers_count: parseInt(document.getElementById('managersCount').value),
-                product: document.getElementById('product').value
-            };
-
-            if (!supabaseClient) {
-                // Демо-режим, если ключи не прописаны, чтобы кнопка не зависала
-                setTimeout(() => {
-                    submitBtn.textContent = 'Отправить заявку';
-                    submitBtn.disabled = false;
-                    document.getElementById('leadForm').style.display = 'none';
-                    document.getElementById('modalHeaderContent').style.display = 'none';
-                    document.getElementById('successMessage').style.display = 'block';
-                    event.target.reset();
-                }, 600);
-                return;
-            }
-
-            const { error } = await supabaseClient
-                .from('consultation_leads')
-                .insert([leadData]);
-
-            submitBtn.textContent = 'Отправить заявку';
-            submitBtn.disabled = false;
-
-            if (error) {
-                console.error('Ошибка сохранения:', error);
-                alert('Произошла ошибка при отправке. Проверьте консоль.');
-            } else {
-                document.getElementById('leadForm').style.display = 'none';
-                document.getElementById('modalHeaderContent').style.display = 'none';
-                document.getElementById('successMessage').style.display = 'block';
-                event.target.reset();
-            }
+        function closeExpertise() {
+            const modal = document.getElementById('expertiseModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Возвращаем скролл
         }
     </script>
+
 </body>
 </html>
