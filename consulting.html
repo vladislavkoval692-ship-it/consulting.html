@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA — Strategic & Financial Engineering</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
+
+        :root {
+            --bg: #08080a;
+            --card-bg: #111216;
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-main: #f4f4f6;
+            --text-sub: #9ba1a6;
+            --border: rgba(212, 175, 55, 0.15);
+            --border-hover: rgba(212, 175, 55, 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            cursor: none;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            letter-spacing: -0.2px;
+        }
+
+        /* Кастомный элегантный курсор */
+        .cursor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 8px; height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            transition: transform 0.1s ease;
+            z-index: 9999;
+        }
+        .cursor-follower {
+            position: fixed;
+            top: 0; left: 0;
+            width: 36px; height: 36px;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+            transition: transform 0.15s ease, width 0.2s, height 0.2s;
+            z-index: 9998;
+        }
+
+        /* Навигация */
+        nav {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 60px;
+            background: rgba(8, 8, 10, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+        .logo span { color: var(--gold); }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-sub);
+            text-decoration: none;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--gold); }
+
+        .btn-private {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 12px 28px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-private:hover {
+            background: var(--gold);
+            color: var(--bg);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Hero секция */
+        header.hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            background: radial-gradient(circle at center, #16151c 0%, var(--bg) 70%);
+        }
+
+        .hero-subtitle {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: var(--gold);
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(40px, 6vw, 84px);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            max-width: 1000px;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #fff 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: var(--text-sub);
+            max-width: 600px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Секция "Коллекция решений" (под часы) */
+        .section {
+            padding: 120px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .section-title span { color: var(--gold); }
+
+        .grid-masterpieces {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .card-masterpiece {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 50px 40px;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        .card-masterpiece::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .card-masterpiece:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .card-masterpiece:hover::before {
+            opacity: 1;
+        }
+
+        .card-index {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            color: var(--gold);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .card-masterpiece h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .card-masterpiece p {
+            color: var(--text-sub);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .card-link {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.3s;
+        }
+
+        .card-link span { color: var(--gold); transition: transform 0.3s; }
+        .card-masterpiece:hover .card-link span { transform: translateX(6px); }
+
+        /* Блок мануфактуры / О нас (в стиле часового бутика) */
+        .manuf-section {
+            background: #0c0d10;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 140px 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 100%;
+        }
+
+        .manuf-content h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .manuf-content p {
+            color: var(--text-sub);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .manuf-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .stat-item h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: var(--gold);
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+
+        .stat-item p {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-sub);
+        }
+
+        .manuf-visual {
+            height: 500px;
+            border: 1px solid var(--border);
+            position: relative;
+            background: radial-gradient(circle at center, #1b1c24 0%, #08080a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .manuf-visual::after {
+            content: 'AURA MANUFACTURE';
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            letter-spacing: 8px;
+            color: rgba(212, 175, 55, 0.2);
+            position: absolute;
+        }
+
+        /* Футер */
+        footer {
+            padding: 80px 60px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-sub);
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 1024px) {
+            .grid-masterpieces { grid-template-columns: 1fr; }
+            .manuf-section { grid-template-columns: 1fr; }
+            nav { padding: 20px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <nav>
+        <a href="#" class="logo">AURA<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="#">Философия</a></li>
+            <li><a href="#">Решения</a></li>
+            <li><a href="#">Капитал</a></li>
+            <li><a href="#">Приватный доступ</a></li>
+        </ul>
+        <button class="btn-private" onclick="alert('Запрос на закрытую консультацию отправлен консьерж-сервису.')">Частный запрос</button>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-subtitle">High-End Strategic Engineering</div>
+        <h1>Архитектура капитала <span>вне времени</span></h1>
+        <p>Создаем сложные финансовые конструкции, защищаем активы глобального уровня и управляем стратегиями с точностью швейцарского механизма.</p>
+        <button class="btn-private" style="padding: 16px 36px; font-size: 12px;" onclick="alert('Добро пожаловать в элитный консалтинг.')">Инициировать проект</button>
+    </header>
+
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">Калибры <span>решений</span></h2>
+            <span style="color: var(--text-sub); font-size: 12px; text-transform: uppercase; letter-spacing: 2px;">Коллекция 2026</span>
+        </div>
+
+        <div class="grid-masterpieces">
+            <div class="card-masterpiece">
+                <div class="card-index">CALIBRE 01</div>
+                <h3>Сложные структуры</h3>
+                <p>Проектирование международных холдингов, защита бенефициаров и бесшовная интеграция капитала в юрисдикции высшего доверия.</p>
+                <a href="#" class="card-link" onclick="event.preventDefault(); alert('Детали калибра 01')">Исследовать <span>→</span></a>
+            </div>
+
+            <div class="card-masterpiece">
+                <div class="card-index">CALIBRE 02</div>
+                <h3>Трансформация бизнеса</h3>
+                <p>Реорганизация бизнес-процессов с ювелирной точностью. Устранение кассовых разрывов, масштабирование маржинальности и операционный аудит.</p>
+                <a href="#" class="card-link" onclick="event.preventDefault(); alert('Детали калибра 02')">Исследовать <span>→</span></a>
+            </div>
+
+            <div class="card-masterpiece">
+                <div class="card-index">CALIBRE 03</div>
+                <h3>Антикризисный Турбийон</h3>
+                <p>Мгновенное вмешательство в критические ситуации, правовой штурм в судах высших инстанций и стабилизация активов под давлением.</p>
+                <a href="#" class="card-link" onclick="event.preventDefault(); alert('Детали калибра 03')">Исследовать <span>→</span></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="manuf-section">
+        <div class="manuf-content">
+            <div class="hero-subtitle" style="margin-bottom: 10px;">Мануфактура смыслов</div>
+            <h2>Сложность, доведенная до совершенства</h2>
+            <p>Как часовые мастера Audemars Piguet собирают тысячи микродеталей в единый механизм, работающий с идеальной точностью, так и мы собираем разрозненные элементы вашего бизнеса и финансов в безупречно функционирующую систему.</p>
+            <p>Никаких шаблонных отчетов. Только индивидуальная сборка под каждую задачу.</p>
+            
+            <div class="manuf-stats">
+                <div class="stat-item">
+                    <h4>$1.2B+</h4>
+                    <p>Защищенного капитала</p>
+                </div>
+                <div class="stat-item">
+                    <h4>100%</h4>
+                    <p>Конфиденциальность</p>
+                </div>
+            </div>
+        </div>
+        <div class="manuf-visual">
+            <p style="color: var(--text-sub); font-size: 14px; line-height: 1.6; font-weight: 300; position: relative; z-index: 2;">
+                «Истинная роскошь в консалтинге — это абсолютная прозрачность результатов при полной невидимости процессов для внешнего мира».
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 AURA & CO. Strategic Engineering. Все права защищены швейцарским правом.</p>
+    </footer>
+
+    <script>
+        // Плавный кастомный курсор
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursorFollower');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+            follower.style.transform = `translate3d(${e.clientX - 14}px, ${e.clientY - 14}px, 0)`;
+        });
+
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                follower.style.width = '60px';
+                follower.style.height = '60px';
+                follower.style.borderColor = 'var(--gold-light)';
+            });
+            el.addEventListener('mouseleave', () => {
+                follower.style.width = '36px';
+                follower.style.height = '36px';
+                follower.style.borderColor = 'rgba(212, 175, 55, 0.4)';
+            });
+        });
+    </script>
+</body>
+</html>
