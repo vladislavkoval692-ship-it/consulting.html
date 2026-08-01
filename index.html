@@ -566,6 +566,7 @@
             <li><button type="button" onclick="openModalWindow('expertiseModal')">Экспертиза</button></li>
             <li><button type="button" onclick="openModalWindow('directionsModal')">Направления</button></li>
             <li><a href="#results">Результаты</a></li>
+            <li><button type="button" onclick="openModalWindow('aboutModal')">О нас</button></li>
         </ul>
         <button type="button" class="btn-private" onclick="openModal()">Запросить консультацию</button>
     </nav>
@@ -684,7 +685,7 @@
         </div>
     </div>
 
-    <!-- ПОЛНОЭКРАННЫЙ БЛОК "НАПРАВЛЕНИЯ" (ВКУСНЫЙ, ЯРКИЙ, ПРОДАЮЩИЙ) -->
+    <!-- ПОЛНОЭКРАННЫЙ БЛОК "НАПРАВЛЕНИЯ" -->
     <div class="fullscreen-modal" id="directionsModal">
         <div class="fullscreen-container">
             <button type="button" class="fullscreen-close" onclick="closeModalWindow('directionsModal')">✕</button>
@@ -697,7 +698,7 @@
             <div class="fullscreen-grid">
                 <div class="fs-card">
                     <h4>🚀 Построение ОП с нуля</h4>
-                    <p>Разрабатываем и внедряем работающие отделы продаж под ключ. От найма «голодных» до результатов менеджментов до готовых скриптов, регламентов и оцифрованной мотивации.</p>
+                    <p>Разрабатываем и внедряем работающие отделы продаж под ключ. От найма «голодных» результатов менеджментов до готовых скриптов, регламентов и оцифрованной мотивации.</p>
                 </div>
                 <div class="fs-card">
                     <h4>🎯 Аудит и юнит-экономика</h4>
@@ -723,6 +724,51 @@
                     <div class="matrix-item">
                         <div class="matrix-item-title">✓ Автономия бизнеса</div>
                         <p>Руководитель выходит из операционной рутины и тушения пожаров, превращаясь в стратегического владельца масштабируемой системы.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ПОЛНОЭКРАННЫЙ БЛОК "О НАС" (СТИЛЬ, СТАТУС, ЖЕСТКАЯ ДИСЦИПЛИНА) -->
+    <div class="fullscreen-modal" id="aboutModal">
+        <div class="fullscreen-container">
+            <button type="button" class="fullscreen-close" onclick="closeModalWindow('aboutModal')">✕</button>
+            
+            <div class="fullscreen-header">
+                <h2>Философия <span>AURA</span></h2>
+                <p>Мы не продаем иллюзии и мягкий консалтинг. Мы — архитекторы жестких, дисциплинированных и высокодоходных систем управления продажами.</p>
+            </div>
+
+            <div class="fullscreen-grid">
+                <div class="fs-card">
+                    <h4>💎 Эстетика и Статус</h4>
+                    <p>Наш стиль — это безупречная точность во всем. Мы работаем с амбициозными лидерами рынка, создавая премиальную инфраструктуру для бизнеса, который ценит качество, эстетику и превосходство.</p>
+                </div>
+                <div class="fs-card">
+                    <h4>⚔️ Железная Дисциплина</h4>
+                    <p>Хаос убивает прибыль. Наш метод основан на жестких регламентах, бескомпромиссном контроле метрик и строгой отчетности. Никаких «серых зон» — каждый процесс работает как швейцарские часы.</p>
+                </div>
+                <div class="fs-card">
+                    <h4>🛡️ Абсолютная Безопасность</h4>
+                    <p>Конфиденциальность ваших данных, закрытый бэкенд на базе защищенных протоколов Supabase и полная защита информации гарантируют сохранность коммерческой тайны высшего уровня.</p>
+                </div>
+            </div>
+
+            <div class="matrix-box">
+                <h3>Наши принципы <span>в работе</span></h3>
+                <div class="matrix-grid">
+                    <div class="matrix-item">
+                        <div class="matrix-item-title">✓ Никакой «воды»</div>
+                        <p>Только измеримые гипотезы, строгая математика воронок и жесткие дедлайны внедрения. Результат оценивается исключительно в цифрах чистой прибыли.</p>
+                    </div>
+                    <div class="matrix-item">
+                        <div class="matrix-item-title">✓ Персональный подход</div>
+                        <p>Мы не используем шаблонные решения. Каждая архитектура продаж проектируется индивидуально под специфику вашей ниши и масштаб целей.</p>
+                    </div>
+                    <div class="matrix-item">
+                        <div class="matrix-item-title">✓ Долгосрочное превосходство</div>
+                        <p>Мы строим механизмы, которые продолжают приносить деньги и масштабироваться независимо от внешних кризисов и смены кадров в компании.</p>
                     </div>
                 </div>
             </div>
@@ -838,6 +884,7 @@
             if (event.key === 'Escape') {
                 closeModalWindow('expertiseModal');
                 closeModalWindow('directionsModal');
+                closeModalWindow('aboutModal');
                 closeModal();
             }
         });
