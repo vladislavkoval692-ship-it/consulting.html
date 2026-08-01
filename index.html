@@ -22,7 +22,6 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            cursor: none;
         }
 
         body {
@@ -32,27 +31,6 @@
             overflow-x: hidden;
             letter-spacing: -0.2px;
             perspective: 1200px;
-        }
-
-        .cursor {
-            position: fixed;
-            top: 0; left: 0;
-            width: 6px; height: 6px;
-            background: var(--gold);
-            border-radius: 50%;
-            pointer-events: none;
-            transition: transform 0.08s ease;
-            z-index: 9999;
-        }
-        .cursor-follower {
-            position: fixed;
-            top: 0; left: 0;
-            width: 32px; height: 32px;
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            border-radius: 50%;
-            pointer-events: none;
-            transition: transform 0.12s ease, width 0.2s, height 0.2s, border-color 0.2s;
-            z-index: 9998;
         }
 
         nav {
@@ -355,9 +333,6 @@
 </head>
 <body>
 
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-follower" id="cursorFollower"></div>
-
     <nav>
         <a href="#" class="logo">AURA<span>.</span></a>
         <ul class="nav-links">
@@ -409,7 +384,7 @@
     <section class="manuf-section">
         <div class="manuf-content">
             <div class="hero-subtitle" style="margin-bottom: 10px;">Ценность для бизнеса</div>
-        <h2>Почему профессиональный консалтинг критически важен?</h2>
+            <h2>Почему профессиональный консалтинг критически важен?</h2>
             <p>Большинство компаний теряют до 50% потенциальной выручки из-за банального отсутствия системного контроля в продажах: менеджеры забывают перезванивать вовремя, лиды сливаются на этапе квалификации, а руководство принимает решения вслепую.</p>
             <p>Консалтинговая компания AURA выступает внешним архитектором вашей прибыли. Мы не просто даем советы — мы внедряем жесткие регламенты, автоматизируем воронку и превращаем отдел продаж в автономный конвейер генерации денег.</p>
             
@@ -436,27 +411,7 @@
     </footer>
 
     <script>
-        const cursor = document.getElementById('cursor');
-        const follower = document.getElementById('cursorFollower');
-
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-            follower.style.transform = `translate3d(${e.clientX - 16}px, ${e.clientY - 16}px, 0)`;
-        });
-
-        document.querySelectorAll('a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                follower.style.width = '55px';
-                follower.style.height = '55px';
-                follower.style.borderColor = 'var(--gold-light)';
-            });
-            el.addEventListener('mouseleave', () => {
-                follower.style.width = '32px';
-                follower.style.height = '32px';
-                follower.style.borderColor = 'rgba(212, 175, 55, 0.4)';
-            });
-        });
-
+        // 3D Tilt эффект карточек под обычный курсор мыши
         const cards = document.querySelectorAll('.card-masterpiece');
 
         cards.forEach(card => {
