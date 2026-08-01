@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA — Strategic & Financial Engineering</title>
+    <title>AURA — High-End Sales Engineering</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
 
         :root {
-            --bg: #08080a;
-            --card-bg: #111216;
+            --bg: #050507;
+            --card-bg: #0d0e12;
             --gold: #d4af37;
             --gold-light: #f3e5ab;
             --text-main: #f4f4f6;
-            --text-sub: #9ba1a6;
-            --border: rgba(212, 175, 55, 0.15);
-            --border-hover: rgba(212, 175, 55, 0.5);
+            --text-sub: #8e949e;
+            --border: rgba(212, 175, 55, 0.18);
+            --border-hover: rgba(212, 175, 55, 0.6);
         }
 
         * {
@@ -31,27 +31,28 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
             letter-spacing: -0.2px;
+            perspective: 1200px;
         }
 
-        /* Кастомный элегантный курсор */
+        /* Премиальный курсор */
         .cursor {
             position: fixed;
             top: 0; left: 0;
-            width: 8px; height: 8px;
+            width: 6px; height: 6px;
             background: var(--gold);
             border-radius: 50%;
             pointer-events: none;
-            transition: transform 0.1s ease;
+            transition: transform 0.08s ease;
             z-index: 9999;
         }
         .cursor-follower {
             position: fixed;
             top: 0; left: 0;
-            width: 36px; height: 36px;
+            width: 32px; height: 32px;
             border: 1px solid rgba(212, 175, 55, 0.4);
             border-radius: 50%;
             pointer-events: none;
-            transition: transform 0.15s ease, width 0.2s, height 0.2s;
+            transition: transform 0.12s ease, width 0.2s, height 0.2s, border-color 0.2s;
             z-index: 9998;
         }
 
@@ -62,18 +63,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 30px 60px;
-            background: rgba(8, 8, 10, 0.85);
-            backdrop-filter: blur(12px);
+            padding: 28px 60px;
+            background: rgba(5, 5, 7, 0.85);
+            backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
             z-index: 1000;
         }
 
         .logo {
             font-family: 'Cinzel', serif;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
-            letter-spacing: 4px;
+            letter-spacing: 5px;
             color: var(--text-main);
             text-decoration: none;
         }
@@ -88,7 +89,7 @@
         .nav-links a {
             color: var(--text-sub);
             text-decoration: none;
-            font-size: 13px;
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 2px;
             transition: color 0.3s;
@@ -112,10 +113,10 @@
         .btn-private:hover {
             background: var(--gold);
             color: var(--bg);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.35);
         }
 
-        /* Hero секция */
+        /* Hero секция с глубоким 3D-вайбом */
         header.hero {
             height: 100vh;
             display: flex;
@@ -125,13 +126,14 @@
             text-align: center;
             padding: 0 20px;
             position: relative;
-            background: radial-gradient(circle at center, #16151c 0%, var(--bg) 70%);
+            background: radial-gradient(circle at center, #14131c 0%, var(--bg) 70%);
+            transform-style: preserve-3d;
         }
 
         .hero-subtitle {
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 6px;
+            letter-spacing: 7px;
             color: var(--gold);
             margin-bottom: 20px;
             opacity: 0.9;
@@ -139,33 +141,33 @@
 
         .hero h1 {
             font-family: 'Cinzel', serif;
-            font-size: clamp(40px, 6vw, 84px);
+            font-size: clamp(38px, 5.5vw, 78px);
             font-weight: 600;
-            line-height: 1.1;
+            line-height: 1.15;
             margin-bottom: 24px;
-            max-width: 1000px;
+            max-width: 1050px;
             letter-spacing: 1px;
         }
 
         .hero h1 span {
-            background: linear-gradient(135deg, #fff 0%, var(--gold) 100%);
+            background: linear-gradient(135deg, #fff 20%, var(--gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 16px;
+            font-size: 15px;
             color: var(--text-sub);
-            max-width: 600px;
+            max-width: 620px;
             margin-bottom: 40px;
-            line-height: 1.6;
+            line-height: 1.7;
             font-weight: 300;
         }
 
-        /* Секция "Коллекция решений" (под часы) */
+        /* Секция коллекций (с 3D Tilt эффектом как в часовых бутиках) */
         .section {
-            padding: 120px 60px;
-            max-width: 1400px;
+            padding: 130px 60px;
+            max-width: 1440px;
             margin: 0 auto;
         }
 
@@ -180,7 +182,7 @@
 
         .section-title {
             font-family: 'Cinzel', serif;
-            font-size: 36px;
+            font-size: 34px;
             font-weight: 400;
             letter-spacing: 2px;
         }
@@ -191,15 +193,19 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
+            perspective: 1000px;
         }
 
+        /* 3D Карточка */
         .card-masterpiece {
             background: var(--card-bg);
             border: 1px solid var(--border);
             padding: 50px 40px;
             position: relative;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: border-color 0.4s, box-shadow 0.4s;
             overflow: hidden;
+            transform-style: preserve-3d;
+            will-change: transform;
         }
 
         .card-masterpiece::before {
@@ -213,8 +219,7 @@
 
         .card-masterpiece:hover {
             border-color: var(--border-hover);
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 25px rgba(212, 175, 55, 0.1);
         }
 
         .card-masterpiece:hover::before {
@@ -223,45 +228,49 @@
 
         .card-index {
             font-family: 'Cinzel', serif;
-            font-size: 14px;
+            font-size: 13px;
             color: var(--gold);
             margin-bottom: 20px;
             letter-spacing: 2px;
+            transform: translateZ(20px);
         }
 
         .card-masterpiece h3 {
             font-family: 'Cinzel', serif;
-            font-size: 24px;
+            font-size: 22px;
             margin-bottom: 16px;
             font-weight: 500;
+            transform: translateZ(30px);
         }
 
         .card-masterpiece p {
             color: var(--text-sub);
             font-size: 14px;
             line-height: 1.7;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             font-weight: 300;
+            transform: translateZ(15px);
         }
 
         .card-link {
             color: var(--text-main);
             text-decoration: none;
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 2px;
             display: inline-flex;
             align-items: center;
             gap: 10px;
             transition: color 0.3s;
+            transform: translateZ(25px);
         }
 
         .card-link span { color: var(--gold); transition: transform 0.3s; }
-        .card-masterpiece:hover .card-link span { transform: translateX(6px); }
+        .card-masterpiece:hover .card-link span { transform: translateX(8px); }
 
-        /* Блок мануфактуры / О нас (в стиле часового бутика) */
+        /* Мануфактура / Философия продаж */
         .manuf-section {
-            background: #0c0d10;
+            background: #090a0d;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
             padding: 140px 60px;
@@ -269,13 +278,12 @@
             grid-template-columns: 1fr 1fr;
             gap: 80px;
             align-items: center;
-            max-width: 100%;
         }
 
         .manuf-content h2 {
             font-family: 'Cinzel', serif;
-            font-size: 42px;
-            line-height: 1.2;
+            font-size: 38px;
+            line-height: 1.25;
             margin-bottom: 30px;
             font-weight: 400;
         }
@@ -297,47 +305,48 @@
 
         .stat-item h4 {
             font-family: 'Cinzel', serif;
-            font-size: 48px;
+            font-size: 44px;
             color: var(--gold);
             margin-bottom: 8px;
             font-weight: 400;
         }
 
         .stat-item p {
-            font-size: 13px;
+            font-size: 12px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             color: var(--text-sub);
         }
 
         .manuf-visual {
-            height: 500px;
+            height: 520px;
             border: 1px solid var(--border);
             position: relative;
-            background: radial-gradient(circle at center, #1b1c24 0%, #08080a 100%);
+            background: radial-gradient(circle at center, #181922 0%, #050507 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 40px;
+            padding: 50px;
+            overflow: hidden;
         }
 
         .manuf-visual::after {
-            content: 'AURA MANUFACTURE';
+            content: 'SALES ARCHITECTURE';
             font-family: 'Cinzel', serif;
-            font-size: 14px;
+            font-size: 13px;
             letter-spacing: 8px;
-            color: rgba(212, 175, 55, 0.2);
+            color: rgba(212, 175, 55, 0.15);
             position: absolute;
+            bottom: 30px;
         }
 
-        /* Футер */
         footer {
             padding: 80px 60px;
             text-align: center;
             border-top: 1px solid var(--border);
             color: var(--text-sub);
-            font-size: 12px;
+            font-size: 11px;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
@@ -358,46 +367,46 @@
     <nav>
         <a href="#" class="logo">AURA<span>.</span></a>
         <ul class="nav-links">
-            <li><a href="#">Философия</a></li>
-            <li><a href="#">Решения</a></li>
-            <li><a href="#">Капитал</a></li>
+            <li><a href="#">Архитектура</a></li>
+            <li><a href="#">Калибры</a></li>
+            <li><a href="#">Масштаб</a></li>
             <li><a href="#">Приватный доступ</a></li>
         </ul>
-        <button class="btn-private" onclick="alert('Запрос на закрытую консультацию отправлен консьерж-сервису.')">Частный запрос</button>
+        <button class="btn-private" onclick="alert('Запрос на аудит продаж отправлен консьерж-сервису.')">Частный запрос</button>
     </nav>
 
-    <header class="hero">
-        <div class="hero-subtitle">High-End Strategic Engineering</div>
-        <h1>Архитектура капитала <span>вне времени</span></h1>
-        <p>Создаем сложные финансовые конструкции, защищаем активы глобального уровня и управляем стратегиями с точностью швейцарского механизма.</p>
-        <button class="btn-private" style="padding: 16px 36px; font-size: 12px;" onclick="alert('Добро пожаловать в элитный консалтинг.')">Инициировать проект</button>
+    <header class="hero" id="hero">
+        <div class="hero-subtitle">High-End Sales Engineering</div>
+        <h1>Инженерное проектирование <span>системных продаж</span></h1>
+        <p>Устраняем хаос в коммерческих отделах, внедряем прецизионные воронки конверсии, выстраиваем стратегическое управление выручкой и масштабируем бизнес с точностью швейцарского механизма.</p>
+        <button class="btn-private" style="padding: 16px 36px; font-size: 12px;" onclick="alert('Добро пожаловать в элитный консалтинг продаж.')">Инициировать аудит</button>
     </header>
 
     <section class="section">
         <div class="section-header">
             <h2 class="section-title">Калибры <span>решений</span></h2>
-            <span style="color: var(--text-sub); font-size: 12px; text-transform: uppercase; letter-spacing: 2px;">Коллекция 2026</span>
+            <span style="color: var(--text-sub); font-size: 12px; text-transform: uppercase; letter-spacing: 2px;">Коллекция систем</span>
         </div>
 
         <div class="grid-masterpieces">
-            <div class="card-masterpiece">
+            <div class="card-masterpiece" data-tilt>
                 <div class="card-index">CALIBRE 01</div>
-                <h3>Сложные структуры</h3>
-                <p>Проектирование международных холдингов, защита бенефициаров и бесшовная интеграция капитала в юрисдикции высшего доверия.</p>
+                <h3>Архитектура отдела продаж</h3>
+                <p>Проектирование коммерческой структуры с нуля или глубокая реорганизация. Внедрение регламентов, матриц квалификации и сквозных KPI под управлением высших стандартов.</p>
                 <a href="#" class="card-link" onclick="event.preventDefault(); alert('Детали калибра 01')">Исследовать <span>→</span></a>
             </div>
 
-            <div class="card-masterpiece">
+            <div class="card-masterpiece" data-tilt>
                 <div class="card-index">CALIBRE 02</div>
-                <h3>Трансформация бизнеса</h3>
-                <p>Реорганизация бизнес-процессов с ювелирной точностью. Устранение кассовых разрывов, масштабирование маржинальности и операционный аудит.</p>
+                <h3>Сквозная аналитика & LTV</h3>
+                <p>Оцифровка каждого этапа сделки. Устранение кассовых разрывов за счет управления циклом жизни клиента, юнит-экономики и предиктивного прогнозирования выручки.</p>
                 <a href="#" class="card-link" onclick="event.preventDefault(); alert('Детали калибра 02')">Исследовать <span>→</span></a>
             </div>
 
-            <div class="card-masterpiece">
+            <div class="card-masterpiece" data-tilt>
                 <div class="card-index">CALIBRE 03</div>
-                <h3>Антикризисный Турбийон</h3>
-                <p>Мгновенное вмешательство в критические ситуации, правовой штурм в судах высших инстанций и стабилизация активов под давлением.</p>
+                <h3>Турбо-масштабирование B2B</h3>
+                <p>Проведение сложных переговоров высокоуровневого сегмента, штурм новых рынков сбыта и внедрение переговорных стратегий закрытия контрактов миллионного масштаба.</p>
                 <a href="#" class="card-link" onclick="event.preventDefault(); alert('Детали калибра 03')">Исследовать <span>→</span></a>
             </div>
         </div>
@@ -405,53 +414,81 @@
 
     <section class="manuf-section">
         <div class="manuf-content">
-            <div class="hero-subtitle" style="margin-bottom: 10px;">Мануфактура смыслов</div>
-            <h2>Сложность, доведенная до совершенства</h2>
-            <p>Как часовые мастера Audemars Piguet собирают тысячи микродеталей в единый механизм, работающий с идеальной точностью, так и мы собираем разрозненные элементы вашего бизнеса и финансов в безупречно функционирующую систему.</p>
-            <p>Никаких шаблонных отчетов. Только индивидуальная сборка под каждую задачу.</p>
+            <div class="hero-subtitle" style="margin-bottom: 10px;">Мануфактура выручки</div>
+            <h2>Точность каждого коммерческого импульса</h2>
+            <p>Как часовой механизм Jacob & Co. состоит из сотен микрокомпонентов, работающих синхронно, так и отдел продаж требует идеальной стыковки лидогенерации, скриптов, CRM-архитектуры и мотивации менеджеров.</p>
+            <p>Мы не даем абстрактных советов. Мы выстраиваем автономный механизм генерации прибыли, который работает независимо от человеческого фактора.</p>
             
             <div class="manuf-stats">
                 <div class="stat-item">
-                    <h4>$1.2B+</h4>
-                    <p>Защищенного капитала</p>
+                    <h4>x3.4</h4>
+                    <p>Средний рост конверсии</p>
                 </div>
                 <div class="stat-item">
                     <h4>100%</h4>
-                    <p>Конфиденциальность</p>
+                    <p>Прозрачность воронки</p>
                 </div>
             </div>
         </div>
         <div class="manuf-visual">
-            <p style="color: var(--text-sub); font-size: 14px; line-height: 1.6; font-weight: 300; position: relative; z-index: 2;">
-                «Истинная роскошь в консалтинге — это абсолютная прозрачность результатов при полной невидимости процессов для внешнего мира».
+            <p style="color: var(--text-sub); font-size: 14px; line-height: 1.7; font-weight: 300; position: relative; z-index: 2;">
+                «Хаос в продажах — это следствие отсутствия инженерной дисциплины. Мы превращаем хаос в швейцарский часовой механизм».
             </p>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 AURA & CO. Strategic Engineering. Все права защищены швейцарским правом.</p>
+        <p>&copy; 2026 AURA & CO. Sales Engineering. Все права защищены принципами высокой точности.</p>
     </footer>
 
     <script>
-        // Плавный кастомный курсор
+        // Кастомный курсор
         const cursor = document.getElementById('cursor');
         const follower = document.getElementById('cursorFollower');
 
         document.addEventListener('mousemove', (e) => {
             cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-            follower.style.transform = `translate3d(${e.clientX - 14}px, ${e.clientY - 14}px, 0)`;
+            follower.style.transform = `translate3d(${e.clientX - 16}px, ${e.clientY - 16}px, 0)`;
         });
 
         document.querySelectorAll('a, button').forEach(el => {
             el.addEventListener('mouseenter', () => {
-                follower.style.width = '60px';
-                follower.style.height = '60px';
+                follower.style.width = '55px';
+                follower.style.height = '55px';
                 follower.style.borderColor = 'var(--gold-light)';
             });
             el.addEventListener('mouseleave', () => {
-                follower.style.width = '36px';
-                follower.style.height = '36px';
+                follower.style.width = '32px';
+                follower.style.height = '32px';
                 follower.style.borderColor = 'rgba(212, 175, 55, 0.4)';
+            });
+        });
+
+        // 3D Tilt эффект карточек (как в премиальных часовых витринах)
+        const cards = document.querySelectorAll('.card-masterpiece');
+
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const xc = rect.width / 2;
+                const yc = rect.height / 2;
+                
+                const dx = (x - xc) / 10;
+                const dy = (yc - y) / 10;
+
+                card.style.transform = `rotateY(${dx}deg) rotateX(${dy}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)';
+                card.style.transition = 'transform 0.5s ease';
+            });
+
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'none';
             });
         });
     </script>
