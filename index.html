@@ -247,7 +247,6 @@
         .card-link span { color: var(--gold); transition: transform 0.3s; }
         .card-masterpiece:hover .card-link span { transform: translateX(8px); }
 
-        /* БЛОК С ЗОЛОТОЙ РАМКОЙ И ПОДСВЕТКОЙ КОНТУРА */
         .manuf-section {
             background: #090a0d;
             border-top: 1px solid var(--border);
@@ -325,7 +324,6 @@
             pointer-events: none;
         }
 
-        /* ПОЛНОЭКРАННЫЕ ОКНА */
         .fullscreen-modal {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -426,7 +424,6 @@
             margin: 0;
         }
 
-        /* МОДАЛЬНОЕ ОКНО ЗАЯВКИ */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -574,7 +571,6 @@
         </div>
 
         <div class="grid-masterpieces">
-            <!-- Карточка 1 -->
             <div class="card-masterpiece">
                 <div class="card-index">01 / СТРУКТУРА</div>
                 <h3>Архитектура отдела продаж</h3>
@@ -582,7 +578,6 @@
                 <button type="button" class="card-link" onclick="openModalWindow('cardModal1')">Узнать детали <span>→</span></button>
             </div>
 
-            <!-- Карточка 2 -->
             <div class="card-masterpiece">
                 <div class="card-index">02 / АНАЛИТИКА</div>
                 <h3>Сквозная аналитика & LTV</h3>
@@ -590,7 +585,6 @@
                 <button type="button" class="card-link" onclick="openModalWindow('cardModal2')">Исследовать <span>→</span></button>
             </div>
 
-            <!-- Карточка 3 -->
             <div class="card-masterpiece">
                 <div class="card-index">03 / МАСШТАБ</div>
                 <h3>Турбо-масштабирование B2B</h3>
@@ -630,7 +624,7 @@
         <p>&copy; 2026 AURA Consulting Group. Все права защищены стандартами управленческой точности.</p>
     </footer>
 
-    <!-- УНИКАЛЬНОЕ МОДАЛЬНОЕ ОКНО 1: Архитектура отдела продаж -->
+    <!-- ВСЕ МОДАЛЬНЫЕ ОКНА -->
     <div class="fullscreen-modal" id="cardModal1">
         <div class="fullscreen-container">
             <button type="button" class="fullscreen-close" onclick="closeModalWindow('cardModal1')">✕</button>
@@ -655,7 +649,6 @@
         </div>
     </div>
 
-    <!-- УНИКАЛЬНОЕ МОДАЛЬНОЕ ОКНО 2: Сквозная аналитика & LTV -->
     <div class="fullscreen-modal" id="cardModal2">
         <div class="fullscreen-container">
             <button type="button" class="fullscreen-close" onclick="closeModalWindow('cardModal2')">✕</button>
@@ -680,7 +673,6 @@
         </div>
     </div>
 
-    <!-- УНИКАЛЬНОЕ МОДАЛЬНОЕ ОКНО 3: Турбо-масштабирование B2B -->
     <div class="fullscreen-modal" id="cardModal3">
         <div class="fullscreen-container">
             <button type="button" class="fullscreen-close" onclick="closeModalWindow('cardModal3')">✕</button>
@@ -705,7 +697,6 @@
         </div>
     </div>
 
-    <!-- СТАНДАРТНЫЕ МОДАЛЬНЫЕ ОКНА ИЗ НАВИГАЦИИ -->
     <div class="fullscreen-modal" id="expertiseModal">
         <div class="fullscreen-container">
             <button type="button" class="fullscreen-close" onclick="closeModalWindow('expertiseModal')">✕</button>
@@ -830,130 +821,41 @@
                 <button type="submit" id="submitBtn" class="btn-private">Отправить заявку</button>
             </form>
             <div id="successMessage" style="display: none; text-align: center; padding: 20px 0;">
-                <div style="font-size: 48px; color: var(--gold); margin-bottom: 20px;">✓</div>
-                <h3 style="margin-bottom: 15px; font-family: 'Cinzel', serif;">Заявка принята</h3>
-                <p style="margin-bottom: 30px; color: var(--text-sub);">Спасибо! Ваша заявка успешно отправлена. Наш эксперт свяжется с вами в ближайшее время.</p>
-                <button type="button" class="btn-private" onclick="closeModal()">Закрыть</button>
+                <h4 style="font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 10px; font-size: 20px;">Заявка принята</h4>
+                <p style="color: var(--text-sub); font-size: 14px;">Наш эксперт свяжется с вами в ближайшее время.</p>
             </div>
         </div>
     </div>
 
-    <!-- СКРИПТЫ -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- СКРИПТЫ УПРАВЛЕНИЯ МОДАЛЬНЫМИ ОКНАМИ -->
     <script>
-        const SUPABASE_URL = 'https://your-project.supabase.co';
-        const SUPABASE_ANON_KEY = 'your-anon-key';
-        
-        let supabaseClient = null;
-        try {
-            if (window.supabase && SUPABASE_URL !== 'https://your-project.supabase.co') {
-                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            }
-        } catch (e) {
-            console.warn('Supabase initialization skipped:', e);
-        }
-
-        function openModalWindow(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
-                if (scrollBarWidth > 0) {
-                    document.body.style.paddingRight = scrollBarWidth + 'px';
-                }
-                document.body.style.overflow = 'hidden';
-                modal.classList.add('active');
-            }
-        }
-
-        function closeModalWindow(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-                document.body.style.paddingRight = '0px';
-            }
-        }
-
-        const consultModal = document.getElementById('consultModal');
-
         function openModal() {
-            if (consultModal) {
-                consultModal.classList.add('active');
-            }
+            document.getElementById('consultModal').classList.add('active');
         }
 
         function closeModal() {
-            if (consultModal) {
-                consultModal.classList.remove('active');
-                setTimeout(() => {
-                    const form = document.getElementById('leadForm');
-                    const header = document.getElementById('modalHeaderContent');
-                    const success = document.getElementById('successMessage');
-                    if (form) form.style.display = 'block';
-                    if (header) header.style.display = 'block';
-                    if (success) success.style.display = 'none';
-                }, 400);
-            }
+            document.getElementById('consultModal').classList.remove('active');
+        }
+
+        function openModalWindow(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModalWindow(modalId) {
+            document.getElementById(modalId).classList.remove('active');
         }
 
         function handleOutsideClick(event) {
-            if (event.target === consultModal) {
+            if (event.target.id === 'consultModal') {
                 closeModal();
             }
         }
 
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                // Закрываем все возможные модальные окна при нажатии Esc
-                ['cardModal1', 'cardModal2', 'cardModal3', 'expertiseModal', 'directionsModal', 'resultsModal', 'aboutModal'].forEach(id => {
-                    closeModalWindow(id);
-                });
-                closeModal();
-            }
-        });
-
-        async function handleSubmit(event) {
+        function handleSubmit(event) {
             event.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.textContent = 'Отправка...';
-            submitBtn.disabled = true;
-
-            const leadData = {
-                full_name: document.getElementById('fullName').value,
-                contact: document.getElementById('contact').value,
-                managers_count: parseInt(document.getElementById('managersCount').value),
-                product: document.getElementById('product').value
-            };
-
-            if (!supabaseClient) {
-                setTimeout(() => {
-                    submitBtn.textContent = 'Отправить заявку';
-                    submitBtn.disabled = false;
-                    document.getElementById('leadForm').style.display = 'none';
-                    document.getElementById('modalHeaderContent').style.display = 'none';
-                    document.getElementById('successMessage').style.display = 'block';
-                    event.target.reset();
-                }, 600);
-                return;
-            }
-
-            const { error } = await supabaseClient
-                .from('consultation_leads')
-                .insert([leadData]);
-
-            submitBtn.textContent = 'Отправить заявку';
-            submitBtn.disabled = false;
-
-            if (error) {
-                console.error('Ошибка сохранения:', error);
-                alert('Произошла ошибка при отправке.');
-            } else {
-                document.getElementById('leadForm').style.display = 'none';
-                document.getElementById('modalHeaderContent').style.display = 'none';
-                document.getElementById('successMessage').style.display = 'block';
-                event.target.reset();
-            }
+            document.getElementById('leadForm').style.display = 'none';
+            document.getElementById('modalHeaderContent').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
         }
     </script>
 </body>
