@@ -225,7 +225,9 @@
 
         .card-link {
             color: var(--text-main);
-            text-decoration: none;
+            background: none;
+            border: none;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -234,6 +236,7 @@
             gap: 10px;
             transition: color 0.3s;
             cursor: pointer;
+            padding: 0;
         }
 
         .card-link span { color: var(--gold); transition: transform 0.3s; }
@@ -434,22 +437,21 @@
     <nav>
         <a href="#" class="logo">AURA<span>.</span></a>
         <ul class="nav-links">
-            <li><a href="#">Экспертиза</a></li>
-            <li><a href="#">Направления</a></li>
-            <li><a href="#">Результаты</a></li>
-            <li><a href="#">Контакты</a></li>
+            <li><a href="#expert" onclick="event.preventDefault();">Экспертиза</a></li>
+            <li><a href="#directions" onclick="event.preventDefault();">Направления</a></li>
+            <li><a href="#results" onclick="event.preventDefault();">Результаты</a></li>
         </ul>
-        <button class="btn-private" onclick="openModal()">Запросить консультацию</button>
+        <button type="button" class="btn-private" onclick="openModal()">Запросить консультацию</button>
     </nav>
 
     <header class="hero" id="hero">
         <div class="hero-subtitle">Strategic Sales Engineering</div>
         <h1>Управление ростом и масштабированием <span>вашего бизнеса</span></h1>
         <p>Профессиональный консалтинг в сфере продаж: выстраиваем сквозную аналитику, устраняем кассовые разрывы, проектируем высокоэффективные отделы продаж и трансформируем хаос в прогнозируемую прибыль.</p>
-        <button class="btn-private" style="padding: 16px 36px; font-size: 12px;" onclick="openModal()">Запросить консультацию</button>
+        <button type="button" class="btn-private" style="padding: 16px 36px; font-size: 12px;" onclick="openModal()">Запросить консультацию</button>
     </header>
 
-    <section class="section">
+    <section class="section" id="directions">
         <div class="section-header">
             <h2 class="section-title">Ключевые <span>направления</span></h2>
             <span style="color: var(--text-sub); font-size: 12px; text-transform: uppercase; letter-spacing: 2px;">Комплексный консалтинг</span>
@@ -460,21 +462,21 @@
                 <div class="card-index">01 / СТРУКТУРА</div>
                 <h3>Архитектура отдела продаж</h3>
                 <p>Проектируем коммерческие департаменты с нуля под ключ. Внедряем регламенты, четкие должностные инструкции, системы грейдов и мотивации, которые заставляют команду работать на выполнение плана.</p>
-                <a href="#" class="card-link" onclick="event.preventDefault(); openModal()">Узнать детали <span>→</span></a>
+                <button type="button" class="card-link" onclick="openModal()">Узнать детали <span>→</span></button>
             </div>
 
             <div class="card-masterpiece">
                 <div class="card-index">02 / АНАЛИТИКА</div>
                 <h3>Сквозная аналитика & LTV</h3>
                 <p>Оцифровываем каждый этап сделки. Устраняем кассовые разрывы за счет управления циклом жизни клиента, юнит-экономики и предиктивного прогнозирования выручки.</p>
-                <a href="#" class="card-link" onclick="event.preventDefault(); openModal()">Исследовать <span>→</span></a>
+                <button type="button" class="card-link" onclick="openModal()">Исследовать <span>→</span></button>
             </div>
 
             <div class="card-masterpiece">
                 <div class="card-index">03 / МАСШТАБ</div>
                 <h3>Турбо-масштабирование B2B</h3>
                 <p>Проведение сложных переговоров высокого сегмента, штурм новых рынков сбыта и внедрение переговорных стратегий закрытия контрактов миллионного масштаба.</p>
-                <a href="#" class="card-link" onclick="event.preventDefault(); openModal()">Исследовать <span>→</span></a>
+                <button type="button" class="card-link" onclick="openModal()">Исследовать <span>→</span></button>
             </div>
         </div>
     </section>
@@ -511,7 +513,7 @@
     <!-- Модальное окно -->
     <div class="modal-overlay" id="consultModal" onclick="handleOutsideClick(event)">
         <div class="modal">
-            <button class="modal-close" onclick="closeModal()">✕</button>
+            <button type="button" class="modal-close" onclick="closeModal()">✕</button>
             <div id="modalHeaderContent">
                 <h3>Запрос консультации</h3>
                 <p>Заполните данные, и наш эксперт свяжется с вами для обсуждения точек роста продаж.</p>
@@ -538,7 +540,7 @@
                 <button type="submit" id="submitBtn" class="btn-private">Отправить заявку</button>
             </form>
 
-            <!-- Красивое сообщение об успехе (скрыто по умолчанию) -->
+            <!-- Сообщение об успехе -->
             <div id="successMessage" style="display: none; text-align: center; padding: 20px 0;">
                 <div style="font-size: 48px; color: var(--gold); margin-bottom: 20px;">✓</div>
                 <h3 style="margin-bottom: 15px; font-family: 'Cinzel', serif;">Заявка принята</h3>
@@ -558,13 +560,11 @@
 
         function openModal() {
             modal.classList.add('active');
-            // Убрали блокировку скролла body, чтобы страница продолжала листаться и не ломалась
         }
 
         function closeModal() {
             modal.classList.remove('active');
             
-            // Возвращаем форму в исходное состояние при закрытии
             setTimeout(() => {
                 document.getElementById('leadForm').style.display = 'block';
                 document.getElementById('modalHeaderContent').style.display = 'block';
@@ -592,7 +592,6 @@
                 product: document.getElementById('product').value
             };
 
-            // Сохраняем в таблицу Supabase
             const { error } = await supabaseClient
                 .from('consultation_leads')
                 .insert([leadData]);
@@ -603,7 +602,6 @@
             if (error) {
                 console.error('Ошибка сохранения:', error);
             } else {
-                // Скрываем форму и заголовки модалки, показываем красивое сообщение
                 document.getElementById('leadForm').style.display = 'none';
                 document.getElementById('modalHeaderContent').style.display = 'none';
                 document.getElementById('successMessage').style.display = 'block';
