@@ -247,7 +247,7 @@
         .card-link span { color: var(--gold); transition: transform 0.3s; }
         .card-masterpiece:hover .card-link span { transform: translateX(8px); }
 
-        /* ВОССТАНОВЛЕННЫЙ БЛОК С ЗОЛОТЫМИ РАМКАМИ И СТРУКТУРНЫМ ТЕКСТОМ */
+        /* БЛОК С ЧЕТКОЙ ЗОЛОТОЙ РАМКОЙ */
         .manuf-section {
             background: #090a0d;
             border-top: 1px solid var(--border);
@@ -301,7 +301,7 @@
 
         .manuf-visual {
             height: 520px;
-            border: 1px solid var(--border); /* Золотая рамка возвращена на место */
+            border: 1px solid rgba(212, 175, 55, 0.45); /* Яркая золотая рамка */
             position: relative;
             background: radial-gradient(circle at center, #181922 0%, #050507 100%);
             display: flex;
@@ -309,7 +309,7 @@
             justify-content: center;
             text-align: center;
             padding: 60px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 0 25px rgba(212, 175, 55, 0.05); /* Легкое золотистое свечение рамки */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7), inset 0 0 35px rgba(212, 175, 55, 0.12); /* Выраженное внутреннее золотое свечение */
         }
 
         .manuf-visual::before {
@@ -319,7 +319,7 @@
             left: 30px;
             font-family: 'Cinzel', serif;
             font-size: 120px;
-            color: var(--border);
+            color: rgba(212, 175, 55, 0.2);
             line-height: 1;
             pointer-events: none;
         }
@@ -423,54 +423,6 @@
             line-height: 1.7;
             font-weight: 300;
             margin: 0;
-        }
-
-        .matrix-box {
-            background: rgba(212, 175, 55, 0.02);
-            border: 1px solid var(--border);
-            padding: 50px;
-            border-radius: 2px;
-        }
-
-        .matrix-box h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 26px;
-            margin-bottom: 30px;
-            text-align: center;
-            font-weight: 400;
-        }
-
-        .matrix-box h3 span { color: var(--gold); }
-
-        .matrix-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .matrix-item {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .matrix-item-title {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--gold);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .matrix-item p {
-            color: var(--text-sub);
-            font-size: 13px;
-            line-height: 1.6;
-            margin: 0;
-            font-weight: 300;
         }
 
         /* МОДАЛЬНОЕ ОКНО ЗАЯВКИ */
@@ -585,7 +537,7 @@
         }
 
         @media (max-width: 1024px) {
-            .grid-masterpieces, .fullscreen-grid, .matrix-grid { grid-template-columns: 1fr; }
+            .grid-masterpieces, .fullscreen-grid { grid-template-columns: 1fr; }
             .manuf-section { grid-template-columns: 1fr; }
             nav { padding: 0 20px; }
         }
@@ -644,7 +596,7 @@
         </div>
     </section>
 
-    <!-- БЛОК С ЗОЛОТОЙ РАМКОЙ И ПРАВИЛЬНЫМ СТРАТЕГИЧЕСКИМ ТЕКСТОМ -->
+    <!-- БЛОК С ЗОЛОТОЙ РАМКОЙ -->
     <section class="manuf-section">
         <div class="manuf-content">
             <div class="hero-subtitle" style="margin-bottom: 10px;">Философия превосходства</div>
