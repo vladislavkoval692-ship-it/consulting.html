@@ -169,7 +169,6 @@
 
         .section-title span { color: var(--gold); }
 
-        /* ОБНОВЛЕННЫЕ КАРТОЧКИ НАПРАВЛЕНИЙ */
         .grid-masterpieces {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -248,13 +247,14 @@
         .card-link span { color: var(--gold); transition: transform 0.3s; }
         .card-masterpiece:hover .card-link span { transform: translateX(8px); }
 
+        /* ИСПРАВЛЕННЫЙ ПРОИЗВОДСТВЕННЫЙ БЛОК (В СТИЛЕ AURA) */
         .manuf-section {
             background: #090a0d;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
             padding: 140px 60px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.1fr 0.9fr;
             gap: 80px;
             align-items: center;
         }
@@ -266,6 +266,8 @@
             margin-bottom: 30px;
             font-weight: 400;
         }
+
+        .manuf-content h2 span { color: var(--gold); }
 
         .manuf-content p {
             color: var(--text-sub);
@@ -306,7 +308,19 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 50px;
+            padding: 60px;
+        }
+
+        .manuf-visual::before {
+            content: '“';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-family: 'Cinzel', serif;
+            font-size: 120px;
+            color: var(--border);
+            line-height: 1;
+            pointer-events: none;
         }
 
         /* УНИВЕРСАЛЬНЫЕ СТИЛИ ПОЛНОЭКРАННЫХ ОКОН */
@@ -598,7 +612,7 @@
         <button type="button" class="btn-private" style="padding: 16px 36px; font-size: 12px;" onclick="openModal()">Запросить консультацию</button>
     </header>
 
-    <!-- Секция направлений (Обновленный дизайн) -->
+    <!-- Секция направлений -->
     <section class="section" id="directions">
         <div class="section-header">
             <h2 class="section-title">Ключевые <span>направления</span></h2>
@@ -629,13 +643,13 @@
         </div>
     </section>
 
-    <!-- Производственный блок / ценность -->
+    <!-- ИСПРАВЛЕННЫЙ БЛОК ЦЕННОСТИ ДЛЯ БИЗНЕСА -->
     <section class="manuf-section">
         <div class="manuf-content">
-            <div class="hero-subtitle" style="margin-bottom: 10px;">Ценность для бизнеса</div>
-            <h2>Почему профессиональный консалтинг критически важен?</h2>
-            <p>Большинство компаний теряют до 50% потенциальной выручки из-за банального отсутствия системного контроля в продажах: менеджеры забывают перезванивать вовремя, лиды сливаются на этапе квалификации, а руководство принимает решения вслепую.</p>
-            <p>Консалтинговая компания AURA выступает внешним архитектором вашей прибыли. Мы не просто даем советы — мы внедряем жесткие регламенты, автоматизируем воронку и превращаем отдел продаж в автономный конвейер генерации денег.</p>
+            <div class="hero-subtitle" style="margin-bottom: 10px;">Философия превосходства</div>
+            <h2>Архитектура системных продаж для <span>лидеров рынка</span></h2>
+            <p>Управленческий хаос и отсутствие строгой дисциплины в коммерческих процессах незаметно сжигают львиную долю рекламных бюджетов, оставляя собственника в заложниках человеческого фактора.</p>
+            <p>Консалтинговая группа AURA внедряет бескомпромиссные стандарты управления продажами. Мы создаем автономные бизнес-механизмы, где каждая цифра оцифрована, а рост выручки подчиняется строгим математическим алгоритмам.</p>
             
             <div class="manuf-stats">
                 <div class="stat-item">
@@ -649,7 +663,7 @@
             </div>
         </div>
         <div class="manuf-visual">
-            <p style="color: var(--text-sub); font-size: 14px; line-height: 1.7; font-weight: 300; position: relative; z-index: 2;">
+            <p style="color: var(--text-sub); font-size: 15px; line-height: 1.8; font-weight: 300; position: relative; z-index: 2; font-style: italic;">
                 «Системные продажи — это точная математика, где каждый лид превращается в актив компании благодаря правильным алгоритмам».
             </p>
         </div>
@@ -892,7 +906,6 @@
             console.warn('Supabase initialization skipped:', e);
         }
 
-        // Универсальная логика открытия полноэкранных окон с защитой от дергания скролла
         function openModalWindow(modalId) {
             const modal = document.getElementById(modalId);
             if (modal) {
@@ -914,7 +927,6 @@
             }
         }
 
-        // Логика модального окна заявки
         const consultModal = document.getElementById('consultModal');
 
         function openModal() {
@@ -943,7 +955,6 @@
             }
         }
 
-        // Закрытие всех окон по Escape
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModalWindow('expertiseModal');
@@ -954,7 +965,6 @@
             }
         });
 
-        // Отправка формы в Supabase
         async function handleSubmit(event) {
             event.preventDefault();
             
