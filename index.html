@@ -169,6 +169,7 @@
 
         .section-title span { color: var(--gold); }
 
+        /* ОБНОВЛЕННЫЕ КАРТОЧКИ НАПРАВЛЕНИЙ */
         .grid-masterpieces {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -180,12 +181,27 @@
             border: 1px solid var(--border);
             padding: 50px 40px;
             position: relative;
-            transition: border-color 0.4s, box-shadow 0.4s;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        .card-masterpiece::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .card-masterpiece:hover {
             border-color: var(--border-hover);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 25px rgba(212, 175, 55, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 25px rgba(212, 175, 55, 0.12);
+        }
+
+        .card-masterpiece:hover::before {
+            opacity: 1;
         }
 
         .card-index {
@@ -201,6 +217,7 @@
             font-size: 22px;
             margin-bottom: 16px;
             font-weight: 500;
+            color: #fff;
         }
 
         .card-masterpiece p {
@@ -224,8 +241,10 @@
             gap: 10px;
             cursor: pointer;
             padding: 0;
+            transition: color 0.3s;
         }
 
+        .card-link:hover { color: var(--gold); }
         .card-link span { color: var(--gold); transition: transform 0.3s; }
         .card-masterpiece:hover .card-link span { transform: translateX(8px); }
 
@@ -579,7 +598,7 @@
         <button type="button" class="btn-private" style="padding: 16px 36px; font-size: 12px;" onclick="openModal()">Запросить консультацию</button>
     </header>
 
-    <!-- Секция направлений -->
+    <!-- Секция направлений (Обновленный дизайн) -->
     <section class="section" id="directions">
         <div class="section-header">
             <h2 class="section-title">Ключевые <span>направления</span></h2>
@@ -730,7 +749,7 @@
         </div>
     </div>
 
-    <!-- ПОЛНОЭКРАННЫЙ БЛОК "РЕЗУЛЬТАТЫ" (НЕ ПРЕВЕЛИЧЕННЫЕ, СТРОГИЕ И МАТЕМАТИЧЕСКИЕ) -->
+    <!-- ПОЛНОЭКРАННЫЙ БЛОК "РЕЗУЛЬТАТЫ" -->
     <div class="fullscreen-modal" id="resultsModal">
         <div class="fullscreen-container">
             <button type="button" class="fullscreen-close" onclick="closeModalWindow('resultsModal')">✕</button>
