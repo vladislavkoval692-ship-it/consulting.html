@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AURA — Strategic Sales Consulting</title>
-    <!-- Подключаем клиент Supabase SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
 
@@ -282,7 +280,6 @@
             padding: 50px;
         }
 
-        /* Исправленные стили модалки: исправлен баг с перекрытием кликов */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -519,25 +516,42 @@
         </div>
     </div>
 
+    <!-- Подключаем клиент Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        const SUPABASE_URL = 'ТВОЙ_SUPABASE_URL';
-        const SUPABASE_ANON_KEY = 'ТВОЙ_SUPABASE_ANON_KEY';
-        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // Инициализация Supabase (замени на реальные данные при деплое)
+        const SUPABASE_URL = 'https://your-project.supabase.co';
+        const SUPABASE_ANON_KEY = 'your-anon-key';
+        
+        let supabaseClient = null;
+        try {
+            if (window.supabase && SUPABASE_URL !== 'https://your-project.supabase.co') {
+                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            }
+        } catch (e) {
+            console.warn('Supabase initialization skipped or failed:', e);
+        }
 
         const modal = document.getElementById('consultModal');
 
         function openModal() {
-            modal.classList.add('active');
+            if (modal) {
+                modal.classList.add('active');
+            }
         }
 
         function closeModal() {
-            modal.classList.remove('active');
-            
-            setTimeout(() => {
-                document.getElementById('leadForm').style.display = 'block';
-                document.getElementById('modalHeaderContent').style.display = 'block';
-                document.getElementById('successMessage').style.display = 'none';
-            }, 400);
+            if (modal) {
+                modal.classList.remove('active');
+                setTimeout(() => {
+                    const form = document.getElementById('leadForm');
+                    const header = document.getElementById('modalHeaderContent');
+                    const success = document.getElementById('successMessage');
+                    if (form) form.style.display = 'block';
+                    if (header) header.style.display = 'block';
+                    if (success) success.style.display = 'none';
+                }, 400);
+            }
         }
 
         function handleOutsideClick(event) {
@@ -560,6 +574,19 @@
                 product: document.getElementById('product').value
             };
 
+            if (!supabaseClient) {
+                // Демо-режим, если ключи не прописаны, чтобы кнопка не зависала
+                setTimeout(() => {
+                    submitBtn.textContent = 'Отправить заявку';
+                    submitBtn.disabled = false;
+                    document.getElementById('leadForm').style.display = 'none';
+                    document.getElementById('modalHeaderContent').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                    event.target.reset();
+                }, 600);
+                return;
+            }
+
             const { error } = await supabaseClient
                 .from('consultation_leads')
                 .insert([leadData]);
@@ -569,15 +596,14 @@
 
             if (error) {
                 console.error('Ошибка сохранения:', error);
+                alert('Произошла ошибка при отправке. Проверьте консоль.');
             } else {
                 document.getElementById('leadForm').style.display = 'none';
                 document.getElementById('modalHeaderContent').style.display = 'none';
                 document.getElementById('successMessage').style.display = 'block';
-                
                 event.target.reset();
             }
         }
     </script>
-
 </body>
 </html>
