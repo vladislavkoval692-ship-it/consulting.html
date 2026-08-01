@@ -10,6 +10,7 @@
         :root {
             --bg: #050507;
             --card-bg: #0d0e12;
+            --modal-bg: #0f1015;
             --gold: #d4af37;
             --gold-light: #f3e5ab;
             --text-main: #f4f4f6;
@@ -308,6 +309,106 @@
             bottom: 30px;
         }
 
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 5, 7, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--modal-bg);
+            border: 1px solid var(--border);
+            width: 100%;
+            max-width: 520px;
+            padding: 50px 40px;
+            position: relative;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 30px rgba(212, 175, 55, 0.15);
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 25px; right: 25px;
+            background: transparent;
+            border: none;
+            color: var(--text-sub);
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover { color: var(--gold); }
+
+        .modal h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .modal p {
+            color: var(--text-sub);
+            font-size: 13px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 14px 18px;
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 14px;
+            border-radius: 2px;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .modal .btn-private {
+            width: 100%;
+            margin-top: 10px;
+            padding: 16px;
+            text-align: center;
+        }
+
         footer {
             padding: 80px 60px;
             text-align: center;
@@ -336,14 +437,14 @@
             <li><a href="#">Результаты</a></li>
             <li><a href="#">Контакты</a></li>
         </ul>
-        <button class="btn-private" onclick="alert('Запрос на стратегический консалтинг принят.')">Заказать аудит</button>
+        <button class="btn-private" onclick="openModal()">Заказать аудит</button>
     </nav>
 
     <header class="hero" id="hero">
         <div class="hero-subtitle">Strategic Sales Engineering</div>
         <h1>Управление ростом и масштабированием <span>вашего бизнеса</span></h1>
         <p>Профессиональный консалтинг в сфере продаж: выстраиваем сквозную аналитику, устраняем кассовые разрывы, проектируем высокоэффективные отделы продаж и трансформируем хаос в прогнозируемую прибыль.</p>
-        <button class="btn-private" style="padding: 16px 36px; font-size: 12px;" onclick="alert('Менеджер свяжется с вами для обсуждения задач.')">Запросить консультацию</button>
+        <button class="btn-private" style="padding: 16px 36px; font-size: 12px;" onclick="openModal()">Запросить консультацию</button>
     </header>
 
     <section class="section">
@@ -357,21 +458,21 @@
                 <div class="card-index">01 / СТРУКТУРА</div>
                 <h3>Архитектура отдела продаж</h3>
                 <p>Проектируем коммерческие департаменты с нуля под ключ. Внедряем регламенты, четкие должностные инструкции, системы грейдов и мотивации, которые заставляют команду работать на выполнение плана.</p>
-                <a href="#" class="card-link" onclick="event.preventDefault(); alert('Переход к направлению 01')">Узнать детали <span>→</span></a>
+                <a href="#" class="card-link" onclick="event.preventDefault(); openModal()">Узнать детали <span>→</span></a>
             </div>
 
             <div class="card-masterpiece">
                 <div class="card-index">02 / АНАЛИТИКА</div>
                 <h3>Сквозная аналитика & LTV</h3>
                 <p>Оцифровываем каждый этап сделки. Устраняем кассовые разрывы за счет управления циклом жизни клиента, юнит-экономики и предиктивного прогнозирования выручки.</p>
-                <a href="#" class="card-link" onclick="event.preventDefault(); alert('Переход к направлению 02')">Исследовать <span>→</span></a>
+                <a href="#" class="card-link" onclick="event.preventDefault(); openModal()">Исследовать <span>→</span></a>
             </div>
 
             <div class="card-masterpiece">
                 <div class="card-index">03 / МАСШТАБ</div>
                 <h3>Турбо-масштабирование B2B</h3>
                 <p>Проведение сложных переговоров высокого сегмента, штурм новых рынков сбыта и внедрение переговорных стратегий закрытия контрактов миллионного масштаба.</p>
-                <a href="#" class="card-link" onclick="event.preventDefault(); alert('Переход к направлению 03')">Исследовать <span>→</span></a>
+                <a href="#" class="card-link" onclick="event.preventDefault(); openModal()">Исследовать <span>→</span></a>
             </div>
         </div>
     </section>
@@ -404,6 +505,62 @@
     <footer>
         <p>&copy; 2026 AURA Consulting Group. Все права защищены стандартами управленческой точности.</p>
     </footer>
+
+    <!-- Модальное окно -->
+    <div class="modal-overlay" id="consultModal" onclick="handleOutsideClick(event)">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <h3>Запрос консультации</h3>
+            <p>Заполните данные, и наш эксперт свяжется с вами для обсуждения точек роста продаж.</p>
+            
+            <form onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label>ФИО</label>
+                    <input type="text" class="form-control" required placeholder="Иван Иванов">
+                </div>
+                <div class="form-group">
+                    <label>Телефон или Telegram</label>
+                    <input type="text" class="form-control" required placeholder="+380... / @username">
+                </div>
+                <div class="form-group">
+                    <label>Количество менеджеров по продажам</label>
+                    <input type="number" class="form-control" min="1" required placeholder="Например: 5">
+                </div>
+                <div class="form-group">
+                    <label>Какой продукт вы продаете?</label>
+                    <input type="text" class="form-control" required placeholder="Например: B2B SaaS / Недвижимость / Услуги">
+                </div>
+                <button type="submit" class="btn-private">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('consultModal');
+
+        function openModal() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function handleOutsideClick(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Спасибо! Ваша заявка успешно отправлена. Эксперт свяжется с вами в ближайшее время.');
+            closeModal();
+            event.target.reset();
+        }
+    </script>
 
 </body>
 </html>
