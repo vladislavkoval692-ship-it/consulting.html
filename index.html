@@ -247,7 +247,7 @@
         .card-link span { color: var(--gold); transition: transform 0.3s; }
         .card-masterpiece:hover .card-link span { transform: translateX(8px); }
 
-        /* ИСПРАВЛЕННЫЙ ПРОИЗВОДСТВЕННЫЙ БЛОК (В СТИЛЕ AURA) */
+        /* ИСПРАВЛЕННЫЙ БЛОК: СТРОГО ПОД AURA СЦЕНАРИЙ */
         .manuf-section {
             background: #090a0d;
             border-top: 1px solid var(--border);
@@ -323,7 +323,7 @@
             pointer-events: none;
         }
 
-        /* УНИВЕРСАЛЬНЫЕ СТИЛИ ПОЛНОЭКРАННЫХ ОКОН */
+        /* ПОЛНОЭКРАННЫЕ ОКНА */
         .fullscreen-modal {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -472,7 +472,7 @@
             font-weight: 300;
         }
 
-        /* МОДАЛЬНОЕ ОКНО ДЛЯ ЗАЯВКИ */
+        /* МОДАЛЬНОЕ ОКНО ЗАЯВКИ */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -643,7 +643,7 @@
         </div>
     </section>
 
-    <!-- ИСПРАВЛЕННЫЙ БЛОК ЦЕННОСТИ ДЛЯ БИЗНЕСА -->
+    <!-- ИСПРАВЛЕННЫЙ БЛОК (СООТВЕТСТВУЕТ СКРИНШОТУ И AURA СТИЛИСТИКЕ) -->
     <section class="manuf-section">
         <div class="manuf-content">
             <div class="hero-subtitle" style="margin-bottom: 10px;">Философия превосходства</div>
@@ -673,16 +673,14 @@
         <p>&copy; 2026 AURA Consulting Group. Все права защищены стандартами управленческой точности.</p>
     </footer>
 
-    <!-- ПОЛНОЭКРАННЫЙ БЛОК "ЭКСПЕРТИЗА" -->
+    <!-- ПОЛНОЭКРАННЫЕ ОКНА -->
     <div class="fullscreen-modal" id="expertiseModal">
         <div class="fullscreen-container">
             <button type="button" class="fullscreen-close" onclick="closeModalWindow('expertiseModal')">✕</button>
-            
             <div class="fullscreen-header">
                 <h2>Наша <span>экспертиза</span> и подход</h2>
                 <p>Мы не занимаемся теоретической «водой». Наша цель — построение жесткой, прозрачной и масштабируемой архитектуры продаж под ключ.</p>
             </div>
-
             <div class="fullscreen-grid">
                 <div class="fs-card">
                     <h4>📐 Архитектура продаж</h4>
@@ -697,37 +695,16 @@
                     <p>Внедряем реальные рычаги управления рентабельностью. Вы будете точно знать стоимость привлечения клиента и маржинальность каждого направления.</p>
                 </div>
             </div>
-
-            <div class="matrix-box">
-                <h3>Какие проблемы и боли <span>мы решаем?</span></h3>
-                <div class="matrix-grid">
-                    <div class="matrix-item">
-                        <div class="matrix-item-title" style="color: #ff5c5c;">✕ Хаос в заявках</div>
-                        <p>Лиды теряются, менеджеры забывают перезванивать, а руководители узнают о проблемах постфактум, когда деньги уже сожжены.</p>
-                    </div>
-                    <div class="matrix-item">
-                        <div class="matrix-item-title" style="color: #ff5c5c;">✕ Зависимость от кадров</div>
-                        <p>Увольняется звездный менеджер — и продажи вместе с ним резко падают. Мы создаем систему, которая работает независимо от людей.</p>
-                    </div>
-                    <div class="matrix-item">
-                        <div class="matrix-item-title" style="color: #ff5c5c;">✕ Слепая аналитика</div>
-                        <p>Бюджеты в рекламу уходят, но посчитать реальную окупаемость (ROI) и стоимость привлечения по каждому каналу невозможно.</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
-    <!-- ПОЛНОЭКРАННЫЙ БЛОК "НАПРАВЛЕНИЯ" -->
     <div class="fullscreen-modal" id="directionsModal">
         <div class="fullscreen-container">
             <button type="button" class="fullscreen-close" onclick="closeModalWindow('directionsModal')">✕</button>
-            
             <div class="fullscreen-header">
                 <h2>Наши ключевые <span>направления</span></h2>
                 <p>Комплексная трансформационная экосистема для вашего бизнеса. Выберите вектор роста, который выведет вашу компанию на новый уровень доходности.</p>
             </div>
-
             <div class="fullscreen-grid">
                 <div class="fs-card">
                     <h4>🚀 Построение ОП с нуля</h4>
@@ -742,37 +719,16 @@
                     <p>Интегрируем передовые цифровые инструменты управления продажами, исключая человеческий фактор и обеспечивая стопроцентную прозрачность для собственника.</p>
                 </div>
             </div>
-
-            <div class="matrix-box">
-                <h3>Какой результат вы <span>получаете?</span></h3>
-                <div class="matrix-grid">
-                    <div class="matrix-item">
-                        <div class="matrix-item-title">✓ Предсказуемый поток</div>
-                        <p>Продажи перестают быть рулеткой. Вы получаете четкий, прогнозируемый финансовый план и план-факт анализ на каждый день.</p>
-                    </div>
-                    <div class="matrix-item">
-                        <div class="matrix-item-title">✓ Рост маржинальности</div>
-                        <p>За счет оптимизации воронок и устранения потерь чистая прибыль компании вырастает в среднем на 240% без увеличения рекламных бюджетов.</p>
-                    </div>
-                    <div class="matrix-item">
-                        <div class="matrix-item-title">✓ Автономия бизнеса</div>
-                        <p>Руководитель выходит из операционной рутины и тушения пожаров, превращаясь в стратегического владельца масштабируемой системы.</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
-    <!-- ПОЛНОЭКРАННЫЙ БЛОК "РЕЗУЛЬТАТЫ" -->
     <div class="fullscreen-modal" id="resultsModal">
         <div class="fullscreen-container">
             <button type="button" class="fullscreen-close" onclick="closeModalWindow('resultsModal')">✕</button>
-            
             <div class="fullscreen-header">
                 <h2>Измеримые <span>результаты</span></h2>
                 <p>Никакой мистики и пустых обещаний. Только сухая статистика внедрения жестких стандартов управления продажами.</p>
             </div>
-
             <div class="fullscreen-grid">
                 <div class="fs-card">
                     <h4>📈 Оцифровка воронки</h4>
@@ -787,73 +743,34 @@
                     <p>Внедрение жесткой регламентации поднимает выполнение месячного плана продаж командой с хаотичных 60% до стабильных 92–100%.</p>
                 </div>
             </div>
-
-            <div class="matrix-box">
-                <h3>Факты работы <span>системы AURA</span></h3>
-                <div class="matrix-grid">
-                    <div class="matrix-item">
-                        <div class="matrix-item-title">✓ 14 дней на аудит</div>
-                        <p>Сроки выявления критических точек потерь бюджета и составления жесткой дорожной карты исправления ситуации.</p>
-                    </div>
-                    <div class="matrix-item">
-                        <div class="matrix-item-title">✓ 0% зависимости</div>
-                        <p>Полная независимость бизнес-процессов от увольнения ключевых менеджеров благодаря единой базе знаний и регламентам.</p>
-                    </div>
-                    <div class="matrix-item">
-                        <div class="matrix-item-title">✓ Контроль 24/7</div>
-                        <p>Прозрачная панель метрик для собственника компании, исключающая искажение данных в отчетах подчиненных.</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
-    <!-- ПОЛНОЭКРАННЫЙ БЛОК "О НАС" -->
     <div class="fullscreen-modal" id="aboutModal">
         <div class="fullscreen-container">
             <button type="button" class="fullscreen-close" onclick="closeModalWindow('aboutModal')">✕</button>
-            
             <div class="fullscreen-header">
                 <h2>Философия <span>AURA</span></h2>
                 <p>Мы не продаем иллюзии и мягкий консалтинг. Мы — архитекторы жестких, дисциплинированных и высокодоходных систем управления продажами.</p>
             </div>
-
             <div class="fullscreen-grid">
                 <div class="fs-card">
                     <h4>💎 Эстетика и Статус</h4>
-                    <p>Наш стиль — это безупречная точность во всем. Мы работаем с амбициозными лидерами рынка, создавая премиальную инфраструктуру для бизнеса, который ценит качество, эстетику и превосходство.</p>
+                    <p>Наш стиль — это безупречная точность во всем. Мы работаем с амбициозными лидерами рынка, создавая премиальную инфраструктуру для бизнеса.</p>
                 </div>
                 <div class="fs-card">
                     <h4>⚔️ Железная Дисциплина</h4>
-                    <p>Хаос убивает прибыль. Наш метод основан на жестких регламентах, бескомпромиссном контроле метрик и строгой отчетности. Никаких «серых зон» — каждый процесс работает как швейцарские часы.</p>
+                    <p>Хаос убивает прибыль. Наш метод основан на жестких регламентах, бескомпромиссном контроле метрик и строгой отчетности.</p>
                 </div>
                 <div class="fs-card">
                     <h4>🛡️ Абсолютная Безопасность</h4>
-                    <p>Конфиденциальность ваших данных, закрытый бэкенд на базе защищенных протоколов Supabase и полная защита информации гарантируют сохранность коммерческой тайны высшего уровня.</p>
-                </div>
-            </div>
-
-            <div class="matrix-box">
-                <h3>Наши принципы <span>в работе</span></h3>
-                <div class="matrix-grid">
-                    <div class="matrix-item">
-                        <div class="matrix-item-title">✓ Никакой «воды»</div>
-                        <p>Только измеримые гипотезы, строгая математика воронок и жесткие дедлайны внедрения. Результат оценивается исключительно в цифрах чистой прибыли.</p>
-                    </div>
-                    <div class="matrix-item">
-                        <div class="matrix-item-title">✓ Персональный подход</div>
-                        <p>Мы не используем шаблонные решения. Каждая архитектура продаж проектируется индивидуально под специфику вашей ниши и масштаб целей.</p>
-                    </div>
-                    <div class="matrix-item">
-                        <div class="matrix-item-title">✓ Долгосрочное превосходство</div>
-                        <p>Мы строим механизмы, которые продолжают приносить деньги и масштабироваться независимо от внешних кризисов и смены кадров в компании.</p>
-                    </div>
+                    <p>Конфиденциальность ваших данных, закрытый бэкенд на базе защищенных протоколов Supabase и полная защита информации гарантируют сохранность коммерческой тайны.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ЗАЯВКИ -->
+    <!-- МОДАЛЬНОЕ ОКНО ЗАЯВКИ -->
     <div class="modal-overlay" id="consultModal" onclick="handleOutsideClick(event)">
         <div class="modal">
             <button type="button" class="modal-close" onclick="closeModal()">✕</button>
@@ -861,7 +778,6 @@
                 <h3>Запрос консультации</h3>
                 <p>Заполните данные, и наш эксперт свяжется с вами для обсуждения точек роста продаж.</p>
             </div>
-            
             <form id="leadForm" onsubmit="handleSubmit(event)">
                 <div class="form-group">
                     <label>ФИО</label>
@@ -881,7 +797,6 @@
                 </div>
                 <button type="submit" id="submitBtn" class="btn-private">Отправить заявку</button>
             </form>
-
             <div id="successMessage" style="display: none; text-align: center; padding: 20px 0;">
                 <div style="font-size: 48px; color: var(--gold); margin-bottom: 20px;">✓</div>
                 <h3 style="margin-bottom: 15px; font-family: 'Cinzel', serif;">Заявка принята</h3>
