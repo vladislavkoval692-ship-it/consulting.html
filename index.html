@@ -439,7 +439,7 @@
             <li><a href="#">Результаты</a></li>
             <li><a href="#">Контакты</a></li>
         </ul>
-        <button class="btn-private" onclick="openModal()">Заказать аудит</button>
+        <button class="btn-private" onclick="openModal()">Запросить консультацию</button>
     </nav>
 
     <header class="hero" id="hero">
@@ -512,8 +512,10 @@
     <div class="modal-overlay" id="consultModal" onclick="handleOutsideClick(event)">
         <div class="modal">
             <button class="modal-close" onclick="closeModal()">✕</button>
-            <h3>Запрос консультации</h3>
-            <p>Заполните данные, и наш эксперт свяжется с вами для обсуждения точек роста продаж.</p>
+            <div id="modalHeaderContent">
+                <h3>Запрос консультации</h3>
+                <p>Заполните данные, и наш эксперт свяжется с вами для обсуждения точек роста продаж.</p>
+            </div>
             
             <!-- Форма -->
             <form id="leadForm" onsubmit="handleSubmit(event)">
@@ -556,18 +558,16 @@
 
         function openModal() {
             modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            // Убрали блокировку скролла body, чтобы страница продолжала листаться и не ломалась
         }
 
         function closeModal() {
             modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
             
             // Возвращаем форму в исходное состояние при закрытии
             setTimeout(() => {
                 document.getElementById('leadForm').style.display = 'block';
-                document.querySelector('.modal h3').style.display = 'block';
-                document.querySelector('.modal > p').style.display = 'block';
+                document.getElementById('modalHeaderContent').style.display = 'block';
                 document.getElementById('successMessage').style.display = 'none';
             }, 400);
         }
@@ -602,12 +602,10 @@
 
             if (error) {
                 console.error('Ошибка сохранения:', error);
-                // Заменили уродливый alert на консоль, чтобы браузер больше ничего не показывал
             } else {
-                // Скрываем форму и заголовки, показываем внутреннее красивое сообщение
+                // Скрываем форму и заголовки модалки, показываем красивое сообщение
                 document.getElementById('leadForm').style.display = 'none';
-                document.querySelector('.modal h3').style.display = 'none';
-                document.querySelector('.modal > p').style.display = 'none';
+                document.getElementById('modalHeaderContent').style.display = 'none';
                 document.getElementById('successMessage').style.display = 'block';
                 
                 event.target.reset();
