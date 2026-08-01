@@ -22,6 +22,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            cursor: auto;
         }
 
         body {
@@ -52,6 +53,7 @@
             letter-spacing: 5px;
             color: var(--text-main);
             text-decoration: none;
+            cursor: pointer;
         }
         .logo span { color: var(--gold); }
 
@@ -68,6 +70,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             transition: color 0.3s;
+            cursor: pointer;
         }
 
         .nav-links a:hover { color: var(--gold); }
@@ -172,7 +175,7 @@
             border: 1px solid var(--border);
             padding: 50px 40px;
             position: relative;
-            transition: border-color 0.4s, box-shadow 0.4s;
+            transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s ease;
             overflow: hidden;
             will-change: transform;
         }
@@ -228,6 +231,7 @@
             align-items: center;
             gap: 10px;
             transition: color 0.3s;
+            cursor: pointer;
         }
 
         .card-link span { color: var(--gold); transition: transform 0.3s; }
@@ -350,25 +354,25 @@
         </div>
 
         <div class="grid-masterpieces">
-            <div class="card-masterpiece" data-tilt>
+            <div class="card-masterpiece">
                 <div class="card-index">01 / СТРУКТУРА</div>
                 <h3>Архитектура отдела продаж</h3>
                 <p>Проектируем коммерческие департаменты с нуля под ключ. Внедряем регламенты, четкие должностные инструкции, системы грейдов и мотивации, которые заставляют команду работать на выполнение плана.</p>
                 <a href="#" class="card-link" onclick="event.preventDefault(); alert('Переход к направлению 01')">Узнать детали <span>→</span></a>
             </div>
 
-            <div class="card-masterpiece" data-tilt>
+            <div class="card-masterpiece">
                 <div class="card-index">02 / АНАЛИТИКА</div>
-                <h3>Сквозная аналитика & KPI</h3>
-                <p>Оцифровываем каждый этап воронки продаж. Настраиваем прозрачный управленческий учет, выявляем точки потери клиентской базы и управляем пожизненной ценностью клиента (LTV).</p>
-                <a href="#" class="card-link" onclick="event.preventDefault(); alert('Переход к направлению 02')">Узнать детали <span>→</span></a>
+                <h3>Сквозная аналитика & LTV</h3>
+                <p>Оцифровываем каждый этап сделки. Устраняем кассовые разрывы за счет управления циклом жизни клиента, юнит-экономики и предиктивного прогнозирования выручки.</p>
+                <a href="#" class="card-link" onclick="event.preventDefault(); alert('Переход к направлению 02')">Исследовать <span>→</span></a>
             </div>
 
-            <div class="card-masterpiece" data-tilt>
+            <div class="card-masterpiece">
                 <div class="card-index">03 / МАСШТАБ</div>
-                <h3>Стратегия и рост выручки</h3>
-                <p>Разрабатываем долгосрочные стратегии выхода на новые рынки, помогаем заключать сложные высокочековые B2B-сделки и кратно увеличиваем объем закрытых контрактов без раздувания штата.</p>
-                <a href="#" class="card-link" onclick="event.preventDefault(); alert('Переход к направлению 03')">Узнать детали <span>→</span></a>
+                <h3>Турбо-масштабирование B2B</h3>
+                <p>Проведение сложных переговоров высокого сегмента, штурм новых рынков сбыта и внедрение переговорных стратегий закрытия контрактов миллионного масштаба.</p>
+                <a href="#" class="card-link" onclick="event.preventDefault(); alert('Переход к направлению 03')">Исследовать <span>→</span></a>
             </div>
         </div>
     </section>
@@ -402,33 +406,5 @@
         <p>&copy; 2026 AURA Consulting Group. Все права защищены стандартами управленческой точности.</p>
     </footer>
 
-    <script>
-        const cards = document.querySelectorAll('.card-masterpiece');
-
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const xc = rect.width / 2;
-                const yc = rect.height / 2;
-                
-                const dx = (x - xc) / 15;
-                const dy = (yc - y) / 15;
-
-                card.style.transform = `translateY(-4px) rotateX(${dy}deg) rotateY(${dx}deg)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0px) rotateX(0deg) rotateY(0deg)';
-                card.style.transition = 'transform 0.4s ease';
-            });
-
-            card.addEventListener('mouseenter', () => {
-                card.style.transition = 'none';
-            });
-        });
-    </script>
 </body>
 </html>
