@@ -30,7 +30,6 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
             letter-spacing: -0.2px;
-            perspective: 1200px;
         }
 
         nav {
@@ -102,7 +101,6 @@
             padding: 0 20px;
             position: relative;
             background: radial-gradient(circle at center, #14131c 0%, var(--bg) 70%);
-            transform-style: preserve-3d;
         }
 
         .hero-subtitle {
@@ -167,7 +165,6 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
-            perspective: 1000px;
         }
 
         .card-masterpiece {
@@ -177,7 +174,6 @@
             position: relative;
             transition: border-color 0.4s, box-shadow 0.4s;
             overflow: hidden;
-            transform-style: preserve-3d;
             will-change: transform;
         }
 
@@ -205,7 +201,6 @@
             color: var(--gold);
             margin-bottom: 20px;
             letter-spacing: 2px;
-            transform: translateZ(20px);
         }
 
         .card-masterpiece h3 {
@@ -213,7 +208,6 @@
             font-size: 22px;
             margin-bottom: 16px;
             font-weight: 500;
-            transform: translateZ(30px);
         }
 
         .card-masterpiece p {
@@ -222,7 +216,6 @@
             line-height: 1.7;
             margin-bottom: 35px;
             font-weight: 300;
-            transform: translateZ(15px);
         }
 
         .card-link {
@@ -235,7 +228,6 @@
             align-items: center;
             gap: 10px;
             transition: color 0.3s;
-            transform: translateZ(25px);
         }
 
         .card-link span { color: var(--gold); transition: transform 0.3s; }
@@ -411,7 +403,7 @@
     </footer>
 
     <script>
-        // 3D Tilt эффект карточек под обычный курсор мыши
+        // Аккуратный эффект легкого смещения карточек
         const cards = document.querySelectorAll('.card-masterpiece');
 
         cards.forEach(card => {
@@ -423,15 +415,15 @@
                 const xc = rect.width / 2;
                 const yc = rect.height / 2;
                 
-                const dx = (x - xc) / 10;
-                const dy = (yc - y) / 10;
+                const dx = (x - xc) / 15;
+                const dy = (yc - y) / 15;
 
-                card.style.transform = `rotateY(${dx}deg) rotateX(${dy}deg) scale3d(1.02, 1.02, 1.02)`;
+                card.style.transform = `translateY(-4px) rotateX(${dy}deg) rotateY(${dx}deg)`;
             });
 
             card.addEventListener('mouseleave', () => {
-                card.style.transform = 'rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)';
-                card.style.transition = 'transform 0.5s ease';
+                card.style.transform = 'translateY(0px) rotateX(0deg) rotateY(0deg)';
+                card.style.transition = 'transform 0.4s ease';
             });
 
             card.addEventListener('mouseenter', () => {
