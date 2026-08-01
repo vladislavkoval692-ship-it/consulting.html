@@ -35,12 +35,15 @@
 
         nav {
             position: fixed;
-            top: 0; left: 0; width: 100%;
+            top: 0; 
+            left: 0; 
+            width: 100%;
+            height: 90px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 28px 60px;
-            background: rgba(5, 5, 7, 0.85);
+            padding: 0 60px;
+            background: rgba(5, 5, 7, 0.9);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
             z-index: 1000;
@@ -60,6 +63,7 @@
             display: flex;
             gap: 40px;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links button, .nav-links a {
@@ -105,6 +109,7 @@
             align-items: center;
             text-align: center;
             padding: 160px 20px 100px 20px;
+            margin-top: 90px;
             position: relative;
             background: radial-gradient(circle at center, #14131c 0%, var(--bg) 70%);
         }
@@ -285,11 +290,11 @@
             padding: 50px;
         }
 
-        /* ПОЛНОЭКРАННОЕ ОКНО "ЭКСПЕРТИЗА" */
-        .expertise-fullscreen {
+        /* УНИВЕРСАЛЬНЫЕ СТИЛИ ПОЛНОЭКРАННЫХ ОКОН */
+        .fullscreen-modal {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(5, 5, 7, 0.95);
+            background: rgba(5, 5, 7, 0.98);
             backdrop-filter: blur(12px);
             z-index: 99999;
             overflow-y: auto;
@@ -300,19 +305,19 @@
             padding: 60px 20px;
         }
 
-        .expertise-fullscreen.active {
+        .fullscreen-modal.active {
             opacity: 1;
             visibility: visible;
             pointer-events: auto;
         }
 
-        .expertise-container {
+        .fullscreen-container {
             max-width: 1100px;
             margin: 0 auto;
             position: relative;
         }
 
-        .expertise-close {
+        .fullscreen-close {
             position: absolute;
             top: 0; right: 0;
             background: var(--card-bg);
@@ -328,26 +333,26 @@
             transition: border-color 0.3s, color 0.3s;
         }
 
-        .expertise-close:hover {
+        .fullscreen-close:hover {
             border-color: var(--gold);
             color: var(--gold);
         }
 
-        .expertise-header-block {
+        .fullscreen-header {
             text-align: center;
             margin-bottom: 60px;
         }
 
-        .expertise-header-block h2 {
+        .fullscreen-header h2 {
             font-family: 'Cinzel', serif;
             font-size: clamp(32px, 4vw, 46px);
             margin-bottom: 16px;
             font-weight: 500;
         }
 
-        .expertise-header-block h2 span { color: var(--gold); }
+        .fullscreen-header h2 span { color: var(--gold); }
 
-        .expertise-header-block p {
+        .fullscreen-header p {
             color: var(--text-sub);
             font-size: 16px;
             max-width: 700px;
@@ -356,21 +361,21 @@
             font-weight: 300;
         }
 
-        .expertise-grid-cards {
+        .fullscreen-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             margin-bottom: 50px;
         }
 
-        .exp-card {
+        .fs-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
             padding: 40px 30px;
             border-radius: 2px;
         }
 
-        .exp-card h4 {
+        .fs-card h4 {
             font-family: 'Cinzel', serif;
             font-size: 20px;
             margin-bottom: 16px;
@@ -378,7 +383,7 @@
             font-weight: 500;
         }
 
-        .exp-card p {
+        .fs-card p {
             color: var(--text-sub);
             font-size: 14px;
             line-height: 1.7;
@@ -386,14 +391,14 @@
             margin: 0;
         }
 
-        .pain-matrix {
+        .matrix-box {
             background: rgba(212, 175, 55, 0.02);
             border: 1px solid var(--border);
             padding: 50px;
             border-radius: 2px;
         }
 
-        .pain-matrix h3 {
+        .matrix-box h3 {
             font-family: 'Cinzel', serif;
             font-size: 26px;
             margin-bottom: 30px;
@@ -401,32 +406,32 @@
             font-weight: 400;
         }
 
-        .pain-matrix h3 span { color: var(--gold); }
+        .matrix-box h3 span { color: var(--gold); }
 
-        .pain-grid {
+        .matrix-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
         }
 
-        .pain-box {
+        .matrix-item {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
-        .pain-box-title {
+        .matrix-item-title {
             font-size: 13px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            color: #ff5c5c;
+            color: var(--gold);
             font-weight: 600;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .pain-box p {
+        .matrix-item p {
             color: var(--text-sub);
             font-size: 13px;
             line-height: 1.6;
@@ -434,7 +439,7 @@
             font-weight: 300;
         }
 
-        /* ОБЫЧНОЕ МОДАЛЬНОЕ ОКНО (ФОРМА ЗАЯВКИ) */
+        /* МОДАЛЬНОЕ ОКНО ДЛЯ ЗАЯВКИ */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -546,10 +551,9 @@
         }
 
         @media (max-width: 1024px) {
-            .grid-masterpieces, .expertise-grid-cards, .pain-grid { grid-template-columns: 1fr; }
+            .grid-masterpieces, .fullscreen-grid, .matrix-grid { grid-template-columns: 1fr; }
             .manuf-section { grid-template-columns: 1fr; }
-            nav { padding: 20px; }
-            .nav-links { display: none; }
+            nav { padding: 0 20px; }
         }
     </style>
 </head>
@@ -559,8 +563,8 @@
     <nav>
         <a href="#" class="logo">AURA<span>.</span></a>
         <ul class="nav-links">
-            <li><button type="button" onclick="openExpertise()">Экспертиза</button></li>
-            <li><a href="#directions">Направления</a></li>
+            <li><button type="button" onclick="openModalWindow('expertiseModal')">Экспертиза</button></li>
+            <li><button type="button" onclick="openModalWindow('directionsModal')">Направления</button></li>
             <li><a href="#results">Результаты</a></li>
         </ul>
         <button type="button" class="btn-private" onclick="openModal()">Запросить консультацию</button>
@@ -586,21 +590,21 @@
                 <div class="card-index">01 / СТРУКТУРА</div>
                 <h3>Архитектура отдела продаж</h3>
                 <p>Проектируем коммерческие департаменты с нуля под ключ. Внедряем регламенты, четкие должностные инструкции, системы грейдов и мотивации, которые заставляют команду работать на выполнение плана.</p>
-                <button type="button" class="card-link" onclick="openModal()">Узнать детали <span>→</span></button>
+                <button type="button" class="card-link" onclick="openModalWindow('directionsModal')">Узнать детали <span>→</span></button>
             </div>
 
             <div class="card-masterpiece">
                 <div class="card-index">02 / АНАЛИТИКА</div>
                 <h3>Сквозная аналитика & LTV</h3>
                 <p>Оцифровываем каждый этап сделки. Устраняем кассовые разрывы за счет управления циклом жизни клиента, юнит-экономики и предиктивного прогнозирования выручки.</p>
-                <button type="button" class="card-link" onclick="openModal()">Исследовать <span>→</span></button>
+                <button type="button" class="card-link" onclick="openModalWindow('directionsModal')">Исследовать <span>→</span></button>
             </div>
 
             <div class="card-masterpiece">
                 <div class="card-index">03 / МАСШТАБ</div>
                 <h3>Турбо-масштабирование B2B</h3>
                 <p>Проведение сложных переговоров высокого сегмента, штурм новых рынков сбыта и внедрение переговорных стратегий закрытия контрактов миллионного масштаба.</p>
-                <button type="button" class="card-link" onclick="openModal()">Исследовать <span>→</span></button>
+                <button type="button" class="card-link" onclick="openModalWindow('directionsModal')">Исследовать <span>→</span></button>
             </div>
         </div>
     </section>
@@ -635,45 +639,90 @@
         <p>&copy; 2026 AURA Consulting Group. Все права защищены стандартами управленческой точности.</p>
     </footer>
 
-    <!-- ПОЛНОЭКРАННЫЙ БЛОК "ЭКСПЕРТИЗА" (ВЫНЕСЕН В КОРЕНЬ) -->
-    <div class="expertise-fullscreen" id="expertiseModal">
-        <div class="expertise-container">
-            <button type="button" class="expertise-close" onclick="closeExpertise()">✕</button>
+    <!-- ПОЛНОЭКРАННЫЙ БЛОК "ЭКСПЕРТИЗА" -->
+    <div class="fullscreen-modal" id="expertiseModal">
+        <div class="fullscreen-container">
+            <button type="button" class="fullscreen-close" onclick="closeModalWindow('expertiseModal')">✕</button>
             
-            <div class="expertise-header-block">
+            <div class="fullscreen-header">
                 <h2>Наша <span>экспертиза</span> и подход</h2>
                 <p>Мы не занимаемся теоретической «водой». Наша цель — построение жесткой, прозрачной и масштабируемой архитектуры продаж под ключ.</p>
             </div>
 
-            <div class="expertise-grid-cards">
-                <div class="exp-card">
+            <div class="fullscreen-grid">
+                <div class="fs-card">
                     <h4>📐 Архитектура продаж</h4>
                     <p>Проектируем сквозную бизнес-логику отдела с нуля: от первого касания клиента до закрытия сделки и повторных продаж, исключая слепые зоны в воронке.</p>
                 </div>
-                <div class="exp-card">
+                <div class="fs-card">
                     <h4>⚡ Устранение слива лидов</h4>
                     <p>Настраиваем регламенты, контроль и автоматизацию так, чтобы ни одна заявка не терялась менеджерами, а скорость обработки сокращалась до минут.</p>
                 </div>
-                <div class="exp-card">
+                <div class="fs-card">
                     <h4>📊 Юнит-экономика и метрики</h4>
                     <p>Внедряем реальные рычаги управления рентабельностью. Вы будете точно знать стоимость привлечения клиента и маржинальность каждого направления.</p>
                 </div>
             </div>
 
-            <div class="pain-matrix">
+            <div class="matrix-box">
                 <h3>Какие проблемы и боли <span>мы решаем?</span></h3>
-                <div class="pain-grid">
-                    <div class="pain-box">
-                        <div class="pain-box-title">✕ Хаос в заявках</div>
+                <div class="matrix-grid">
+                    <div class="matrix-item">
+                        <div class="matrix-item-title" style="color: #ff5c5c;">✕ Хаос в заявках</div>
                         <p>Лиды теряются, менеджеры забывают перезванивать, а руководители узнают о проблемах постфактум, когда деньги уже сожжены.</p>
                     </div>
-                    <div class="pain-box">
-                        <div class="pain-box-title">✕ Зависимость от кадров</div>
-                        <p>Увольняется звездный менеджер — и продажи вместе с ним резко падат. Мы создаем систему, которая работает независимо от людей.</p>
+                    <div class="matrix-item">
+                        <div class="matrix-item-title" style="color: #ff5c5c;">✕ Зависимость от кадров</div>
+                        <p>Увольняется звездный менеджер — и продажи вместе с ним резко падают. Мы создаем систему, которая работает независимо от людей.</p>
                     </div>
-                    <div class="pain-box">
-                        <div class="pain-box-title">✕ Слепая аналитика</div>
+                    <div class="matrix-item">
+                        <div class="matrix-item-title" style="color: #ff5c5c;">✕ Слепая аналитика</div>
                         <p>Бюджеты в рекламу уходят, но посчитать реальную окупаемость (ROI) и стоимость привлечения по каждому каналу невозможно.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ПОЛНОЭКРАННЫЙ БЛОК "НАПРАВЛЕНИЯ" (ВКУСНЫЙ, ЯРКИЙ, ПРОДАЮЩИЙ) -->
+    <div class="fullscreen-modal" id="directionsModal">
+        <div class="fullscreen-container">
+            <button type="button" class="fullscreen-close" onclick="closeModalWindow('directionsModal')">✕</button>
+            
+            <div class="fullscreen-header">
+                <h2>Наши ключевые <span>направления</span></h2>
+                <p>Комплексная трансформационная экосистема для вашего бизнеса. Выберите вектор роста, который выведет вашу компанию на новый уровень доходности.</p>
+            </div>
+
+            <div class="fullscreen-grid">
+                <div class="fs-card">
+                    <h4>🚀 Построение ОП с нуля</h4>
+                    <p>Разрабатываем и внедряем работающие отделы продаж под ключ. От найма «голодных» до результатов менеджментов до готовых скриптов, регламентов и оцифрованной мотивации.</p>
+                </div>
+                <div class="fs-card">
+                    <h4>🎯 Аудит и юнит-экономика</h4>
+                    <p>Проводим жесткий стресс-тест вашей текущей коммерческой деятельности, выявляем слепые зоны, где утекает прибыль, и перестраиваем экономику сделок в плюс.</p>
+                </div>
+                <div class="fs-card">
+                    <h4>⚡ Автоматизация & CRM</h4>
+                    <p>Интегрируем передовые цифровые инструменты управления продажами, исключая человеческий фактор и обеспечивая стопроцентную прозрачность для собственника.</p>
+                </div>
+            </div>
+
+            <div class="matrix-box">
+                <h3>Какой результат вы <span>получаете?</span></h3>
+                <div class="matrix-grid">
+                    <div class="matrix-item">
+                        <div class="matrix-item-title">✓ Предсказуемый поток</div>
+                        <p>Продажи перестают быть рулеткой. Вы получаете четкий, прогнозируемый финансовый план и план-факт анализ на каждый день.</p>
+                    </div>
+                    <div class="matrix-item">
+                        <div class="matrix-item-title">✓ Рост маржинальности</div>
+                        <p>За счет оптимизации воронок и устранения потерь чистая прибыль компании вырастает в среднем на 240% без увеличения рекламных бюджетов.</p>
+                    </div>
+                    <div class="matrix-item">
+                        <div class="matrix-item-title">✓ Автономия бизнеса</div>
+                        <p>Руководитель выходит из операционной рутины и тушения пожаров, превращаясь в стратегического владельца масштабируемой системы.</p>
                     </div>
                 </div>
             </div>
@@ -733,23 +782,23 @@
             console.warn('Supabase initialization skipped:', e);
         }
 
-        // Логика полноэкранного окна "Экспертиза"
-        const expertiseModal = document.getElementById('expertiseModal');
-
-        function openExpertise() {
-            if (expertiseModal) {
+        // Универсальная логика открытия полноэкранных окон с защитой от дергания скролла
+        function openModalWindow(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
                 const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
                 if (scrollBarWidth > 0) {
                     document.body.style.paddingRight = scrollBarWidth + 'px';
                 }
                 document.body.style.overflow = 'hidden';
-                expertiseModal.classList.add('active');
+                modal.classList.add('active');
             }
         }
 
-        function closeExpertise() {
-            if (expertiseModal) {
-                expertiseModal.classList.remove('active');
+        function closeModalWindow(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
                 document.body.style.overflow = 'auto';
                 document.body.style.paddingRight = '0px';
             }
@@ -784,10 +833,11 @@
             }
         }
 
-        // Закрытие по Escape
+        // Закрытие всех окон по Escape
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
-                closeExpertise();
+                closeModalWindow('expertiseModal');
+                closeModalWindow('directionsModal');
                 closeModal();
             }
         });
