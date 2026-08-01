@@ -247,7 +247,7 @@
         .card-link span { color: var(--gold); transition: transform 0.3s; }
         .card-masterpiece:hover .card-link span { transform: translateX(8px); }
 
-        /* БЛОК С ЧЕТКОЙ ЗОЛОТОЙ РАМКОЙ И ПОДСВЕТКОЙ КОНТУРА */
+        /* БЛОК С ЗОЛОТОЙ РАМКОЙ И ПОДСВЕТКОЙ КОНТУРА */
         .manuf-section {
             background: #090a0d;
             border-top: 1px solid var(--border);
@@ -300,7 +300,6 @@
             color: var(--text-sub);
         }
 
-        /* ЖЕСТКО ЗАФИКСИРОВАННАЯ ЗОЛОТАЯ РАМКА И СВЕЧЕНИЕ КОНТУРА */
         .manuf-visual {
             height: 520px;
             border: 1px solid rgba(212, 175, 55, 0.65) !important;
@@ -575,25 +574,28 @@
         </div>
 
         <div class="grid-masterpieces">
+            <!-- Карточка 1 -->
             <div class="card-masterpiece">
                 <div class="card-index">01 / СТРУКТУРА</div>
                 <h3>Архитектура отдела продаж</h3>
                 <p>Проектируем коммерческие департаменты с нуля под ключ. Внедряем регламенты, четкие должностные инструкции, системы грейдов и мотивации, которые заставляют команду работать на выполнение плана.</p>
-                <button type="button" class="card-link" onclick="openModalWindow('directionsModal')">Узнать детали <span>→</span></button>
+                <button type="button" class="card-link" onclick="openModalWindow('cardModal1')">Узнать детали <span>→</span></button>
             </div>
 
+            <!-- Карточка 2 -->
             <div class="card-masterpiece">
                 <div class="card-index">02 / АНАЛИТИКА</div>
                 <h3>Сквозная аналитика & LTV</h3>
                 <p>Оцифровываем каждый этап сделки. Устраняем кассовые разрывы за счет управления циклом жизни клиента, юнит-экономики и предиктивного прогнозирования выручки.</p>
-                <button type="button" class="card-link" onclick="openModalWindow('directionsModal')">Исследовать <span>→</span></button>
+                <button type="button" class="card-link" onclick="openModalWindow('cardModal2')">Исследовать <span>→</span></button>
             </div>
 
+            <!-- Карточка 3 -->
             <div class="card-masterpiece">
                 <div class="card-index">03 / МАСШТАБ</div>
                 <h3>Турбо-масштабирование B2B</h3>
                 <p>Проведение сложных переговоров высокого сегмента, штурм новых рынков сбыта и внедрение переговорных стратегий закрытия контрактов миллионного масштаба.</p>
-                <button type="button" class="card-link" onclick="openModalWindow('directionsModal')">Исследовать <span>→</span></button>
+                <button type="button" class="card-link" onclick="openModalWindow('cardModal3')">Исследовать <span>→</span></button>
             </div>
         </div>
     </section>
@@ -628,7 +630,82 @@
         <p>&copy; 2026 AURA Consulting Group. Все права защищены стандартами управленческой точности.</p>
     </footer>
 
-    <!-- ПОЛНОЭКРАННЫЕ ОКНА -->
+    <!-- УНИКАЛЬНОЕ МОДАЛЬНОЕ ОКНО 1: Архитектура отдела продаж -->
+    <div class="fullscreen-modal" id="cardModal1">
+        <div class="fullscreen-container">
+            <button type="button" class="fullscreen-close" onclick="closeModalWindow('cardModal1')">✕</button>
+            <div class="fullscreen-header">
+                <h2>Архитектура <span>отдела продаж</span></h2>
+                <p>Детальный разбор того, как мы выстраиваем системный департамент с нуля под ключ для выполнения ваших бизнес-целей.</p>
+            </div>
+            <div class="fullscreen-grid">
+                <div class="fs-card">
+                    <h4>📋 Регламенты и стандарты</h4>
+                    <p>Прописываем жесткие стандарты работы, скрипты нового поколения и должностные инструкции, исключающие импровизацию менеджеров.</p>
+                </div>
+                <div class="fs-card">
+                    <h4>🎯 Система мотивации</h4>
+                    <p>Внедряем KPI и грейды, привязанные к выполнению плана и маржинальности, чтобы команда была замотивирована на рост прибыли.</p>
+                </div>
+                <div class="fs-card">
+                    <h4>🔄 Контроль качества</h4>
+                    <p>Настраиваем ежедневный аудит звонков и воронки, чтобы вовремя выявлять и устранять просадки в коммуникации с клиентами.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- УНИКАЛЬНОЕ МОДАЛЬНОЕ ОКНО 2: Сквозная аналитика & LTV -->
+    <div class="fullscreen-modal" id="cardModal2">
+        <div class="fullscreen-container">
+            <button type="button" class="fullscreen-close" onclick="closeModalWindow('cardModal2')">✕</button>
+            <div class="fullscreen-header">
+                <h2>Сквозная аналитика <span>& LTV</span></h2>
+                <p>Оцифровка каждого вложенного рубля, управление циклом жизни клиента и прогнозирование выручки на основе точных данных.</p>
+            </div>
+            <div class="fullscreen-grid">
+                <div class="fs-card">
+                    <h4>📊 Юнит-экономика сделки</h4>
+                    <p>Считаем реальную стоимость привлечения (CPA/CAC) и пожизненную ценность клиента (LTV), убирая убыточные рекламные каналы.</p>
+                </div>
+                <div class="fs-card">
+                    <h4>🛡️ Устранение кассовых разрывов</h4>
+                    <p>Предиктивная аналитика денежных потоков позволяет заранее видеть будущие кассовые разрывы и перекрывать их.</p>
+                </div>
+                <div class="fs-card">
+                    <h4>⚡ Дашборды собственника</h4>
+                    <p>Выводим ключевые метрики бизнеса в режиме реального времени на один экран для оперативного принятия стратегических решений.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- УНИКАЛЬНОЕ МОДАЛЬНОЕ ОКНО 3: Турбо-масштабирование B2B -->
+    <div class="fullscreen-modal" id="cardModal3">
+        <div class="fullscreen-container">
+            <button type="button" class="fullscreen-close" onclick="closeModalWindow('cardModal3')">✕</button>
+            <div class="fullscreen-header">
+                <h2>Турбо-масштабирование <span>B2B</span></h2>
+                <p>Специфика закрытия крупных контрактов, штурм новых рынков и переговорные стратегии миллионного масштаба.</p>
+            </div>
+            <div class="fullscreen-grid">
+                <div class="fs-card">
+                    <h4>🤝 Сложные переговоры</h4>
+                    <p>Методология работы с лицами принимающими решения (ЛПР) высшего звена и жесткие стратегии защиты маржинальности контракта.</p>
+                </div>
+                <div class="fs-card">
+                    <h4>🌐 Выход на новые рынки</h4>
+                    <p>Пошаговый алгоритм экспансии в новые географические ниши или смежные сегменты с минимальными финансовыми рисками.</p>
+                </div>
+                <div class="fs-card">
+                    <h4>🚀 Рост среднего чека</h4>
+                    <p>Внедрение кросс-продаж, пакетирования услуг и продуктовых матриц, увеличивающих чек сделки в несколько раз.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- СТАНДАРТНЫЕ МОДАЛЬНЫЕ ОКНА ИЗ НАВИГАЦИИ -->
     <div class="fullscreen-modal" id="expertiseModal">
         <div class="fullscreen-container">
             <button type="button" class="fullscreen-close" onclick="closeModalWindow('expertiseModal')">✕</button>
@@ -827,10 +904,10 @@
 
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
-                closeModalWindow('expertiseModal');
-                closeModalWindow('directionsModal');
-                closeModalWindow('resultsModal');
-                closeModalWindow('aboutModal');
+                // Закрываем все возможные модальные окна при нажатии Esc
+                ['cardModal1', 'cardModal2', 'cardModal3', 'expertiseModal', 'directionsModal', 'resultsModal', 'aboutModal'].forEach(id => {
+                    closeModalWindow(id);
+                });
                 closeModal();
             }
         });
