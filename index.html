@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AURA — Strategic Sales Consulting</title>
+    <!-- Подключаем клиент Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
 
@@ -513,29 +515,34 @@
             <h3>Запрос консультации</h3>
             <p>Заполните данные, и наш эксперт свяжется с вами для обсуждения точек роста продаж.</p>
             
-            <form onsubmit="handleSubmit(event)">
+            <form id="leadForm" onsubmit="handleSubmit(event)">
                 <div class="form-group">
                     <label>ФИО</label>
-                    <input type="text" class="form-control" required placeholder="Иван Иванов">
+                    <input type="text" id="fullName" class="form-control" required placeholder="Иван Иванов">
                 </div>
                 <div class="form-group">
                     <label>Телефон или Telegram</label>
-                    <input type="text" class="form-control" required placeholder="+380... / @username">
+                    <input type="text" id="contact" class="form-control" required placeholder="+380... / @username">
                 </div>
                 <div class="form-group">
                     <label>Количество менеджеров по продажам</label>
-                    <input type="number" class="form-control" min="1" required placeholder="Например: 5">
+                    <input type="number" id="managersCount" class="form-control" min="1" required placeholder="Например: 5">
                 </div>
                 <div class="form-group">
                     <label>Какой продукт вы продаете?</label>
-                    <input type="text" class="form-control" required placeholder="Например: B2B SaaS / Недвижимость / Услуги">
+                    <input type="text" id="product" class="form-control" required placeholder="Например: B2B SaaS / Недвижимость / Услуги">
                 </div>
-                <button type="submit" class="btn-private">Отправить заявку</button>
+                <button type="submit" id="submitBtn" class="btn-private">Отправить заявку</button>
             </form>
         </div>
     </div>
 
     <script>
+        // Инициализация Supabase (замени на свои данные из проекта)
+        const SUPABASE_URL = 'ТВОЙ_SUPABASE_URL';
+        const SUPABASE_ANON_KEY = 'ТВОЙ_SUPABASE_ANON_KEY';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
         const modal = document.getElementById('consultModal');
 
         function openModal() {
@@ -554,11 +561,36 @@
             }
         }
 
-        function handleSubmit(event) {
+        async function handleSubmit(event) {
             event.preventDefault();
-            alert('Спасибо! Ваша заявка успешно отправлена. Эксперт свяжется с вами в ближайшее время.');
-            closeModal();
-            event.target.reset();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.textContent = 'Отправка...';
+            submitBtn.disabled = true;
+
+            const leadData = {
+                full_name: document.getElementById('fullName').value,
+                contact: document.getElementById('contact').value,
+                managers_count: parseInt(document.getElementById('managersCount').value),
+                product: document.getElementById('product').value
+            };
+
+            // Сохраняем в таблицу Supabase
+            const { error } = await supabaseClient
+                .from('consultation_leads')
+                .insert([leadData]);
+
+            submitBtn.textContent = 'Отправить заявку';
+            submitBtn.disabled = false;
+
+            if (error) {
+                console.error('Ошибка сохранения:', error);
+                alert('Произошла ошибка при отправке. Проверьте подключение.');
+            } else {
+                alert('Спасибо! Ваша заявка успешно сохранена в базе данных. Эксперт свяжется с вами.');
+                closeModal();
+                event.target.reset();
+            }
         }
     </script>
 
