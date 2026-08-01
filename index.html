@@ -565,7 +565,7 @@
         <ul class="nav-links">
             <li><button type="button" onclick="openModalWindow('expertiseModal')">Экспертиза</button></li>
             <li><button type="button" onclick="openModalWindow('directionsModal')">Направления</button></li>
-            <li><a href="#results">Результаты</a></li>
+            <li><button type="button" onclick="openModalWindow('resultsModal')">Результаты</button></li>
             <li><button type="button" onclick="openModalWindow('aboutModal')">О нас</button></li>
         </ul>
         <button type="button" class="btn-private" onclick="openModal()">Запросить консультацию</button>
@@ -618,7 +618,7 @@
             <p>Большинство компаний теряют до 50% потенциальной выручки из-за банального отсутствия системного контроля в продажах: менеджеры забывают перезванивать вовремя, лиды сливаются на этапе квалификации, а руководство принимает решения вслепую.</p>
             <p>Консалтинговая компания AURA выступает внешним архитектором вашей прибыли. Мы не просто даем советы — мы внедряем жесткие регламенты, автоматизируем воронку и превращаем отдел продаж в автономный конвейер генерации денег.</p>
             
-            <div class="manuf-stats" id="results">
+            <div class="manuf-stats">
                 <div class="stat-item">
                     <h4>+240%</h4>
                     <p>Рост маржинальности</p>
@@ -730,7 +730,52 @@
         </div>
     </div>
 
-    <!-- ПОЛНОЭКРАННЫЙ БЛОК "О НАС" (СТИЛЬ, СТАТУС, ЖЕСТКАЯ ДИСЦИПЛИНА) -->
+    <!-- ПОЛНОЭКРАННЫЙ БЛОК "РЕЗУЛЬТАТЫ" (НЕ ПРЕВЕЛИЧЕННЫЕ, СТРОГИЕ И МАТЕМАТИЧЕСКИЕ) -->
+    <div class="fullscreen-modal" id="resultsModal">
+        <div class="fullscreen-container">
+            <button type="button" class="fullscreen-close" onclick="closeModalWindow('resultsModal')">✕</button>
+            
+            <div class="fullscreen-header">
+                <h2>Измеримые <span>результаты</span></h2>
+                <p>Никакой мистики и пустых обещаний. Только сухая статистика внедрения жестких стандартов управления продажами.</p>
+            </div>
+
+            <div class="fullscreen-grid">
+                <div class="fs-card">
+                    <h4>📈 Оцифровка воронки</h4>
+                    <p>Устранение слепых зон на каждом этапе сделки позволяет вернуть в оборот до 35% лидов, которые раньше терялись из-за человеческого фактора.</p>
+                </div>
+                <div class="fs-card">
+                    <h4>⏱️ Скорость обработки</h4>
+                    <p>Сокращение времени первого контакта с потенциальным клиентом с нескольких часов до 45 секунд за счет автоматизации маршрутизации лидов.</p>
+                </div>
+                <div class="fs-card">
+                    <h4>🛡️ Стабильность плана</h4>
+                    <p>Внедрение жесткой регламентации поднимает выполнение месячного плана продаж командой с хаотичных 60% до стабильных 92–100%.</p>
+                </div>
+            </div>
+
+            <div class="matrix-box">
+                <h3>Факты работы <span>системы AURA</span></h3>
+                <div class="matrix-grid">
+                    <div class="matrix-item">
+                        <div class="matrix-item-title">✓ 14 дней на аудит</div>
+                        <p>Сроки выявления критических точек потерь бюджета и составления жесткой дорожной карты исправления ситуации.</p>
+                    </div>
+                    <div class="matrix-item">
+                        <div class="matrix-item-title">✓ 0% зависимости</div>
+                        <p>Полная независимость бизнес-процессов от увольнения ключевых менеджеров благодаря единой базе знаний и регламентам.</p>
+                    </div>
+                    <div class="matrix-item">
+                        <div class="matrix-item-title">✓ Контроль 24/7</div>
+                        <p>Прозрачная панель метрик для собственника компании, исключающая искажение данных в отчетах подчиненных.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ПОЛНОЭКРАННЫЙ БЛОК "О НАС" -->
     <div class="fullscreen-modal" id="aboutModal">
         <div class="fullscreen-container">
             <button type="button" class="fullscreen-close" onclick="closeModalWindow('aboutModal')">✕</button>
@@ -884,6 +929,7 @@
             if (event.key === 'Escape') {
                 closeModalWindow('expertiseModal');
                 closeModalWindow('directionsModal');
+                closeModalWindow('resultsModal');
                 closeModalWindow('aboutModal');
                 closeModal();
             }
