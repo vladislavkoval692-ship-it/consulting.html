@@ -247,7 +247,7 @@
         .card-link span { color: var(--gold); transition: transform 0.3s; }
         .card-masterpiece:hover .card-link span { transform: translateX(8px); }
 
-        /* БЛОК С ЧЕТКОЙ ЗОЛОТОЙ РАМКОЙ */
+        /* БЛОК С ЧЕТКОЙ ЗОЛОТОЙ РАМКОЙ И ПОДСВЕТКОЙ СТАТИСТИКИ */
         .manuf-section {
             background: #090a0d;
             border-top: 1px solid var(--border);
@@ -284,12 +284,14 @@
             margin-top: 50px;
         }
 
+        /* Явные стили для золотых цифр с подсветкой */
         .stat-item h4 {
             font-family: 'Cinzel', serif;
             font-size: 44px;
             color: var(--gold);
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.35); /* Золотое свечение */
             margin-bottom: 8px;
-            font-weight: 400;
+            font-weight: 600;
         }
 
         .stat-item p {
